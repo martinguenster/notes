@@ -2,8 +2,8 @@
 
 * Installation
 
-#+BEGIN_SRC bash
-sudo apt-get install mysql-server
+#+BEGIN_SRC sh
+sudo apt install mysql-server
 #+END_SRC
 
 * Konfiguration
