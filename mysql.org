@@ -1,6 +1,11 @@
 #+TITLE: MySQL
 
 * Installation
+
+#+BEGIN_SRC bash
+sudo apt-get install mysql-server
+#+END_SRC
+
 * Konfiguration
 * Anwendung
 * Monitoring
