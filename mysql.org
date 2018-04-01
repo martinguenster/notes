@@ -1,1 +1,7 @@
 #+TITLE: MySQL
+
+* Installation
+* Konfiguration
+* Anwendung
+* Monitoring
+* Backups
