@@ -1,0 +1,127 @@
+#+TITLE: Git
+* Konzepte
+** Hauptzustände
+- Committed
+- Modifed
+- Staged
+** Hauptbereiche
+- Git directory
+- Working tree
+- Staging area
+* Installation
+** Git unter Debian installieren
+#+BEGIN_SRC sh
+sudo apt install git
+#+END_SRC
+* Konfiguratin
+** Konfiguration anzeigen
+#+BEGIN_SRC sh
+git config --list
+#+END_SRC
+** Identität
+#+BEGIN_SRC sh
+git config --global user.name "Martin Günster"
+git config --global user.email mail@martinguenster.de
+#+END_SRC
+** Editor
+#+BEGIN_SRC sh
+git config --global core.editor emacs
+#+END_SRC
+* Hilfe
+** schnelle Hilfe
+#+BEGIN_SRC sh
+git <verb> -h
+#+END_SRC
+** ausführliche Hilfe
+#+BEGIN_SRC sh
+git help <verb>
+#+END_SRC
+* Grundlagen
+** Repositorien anlegen
+*** Initialisieren eines neuen Repository
+#+BEGIN_SRC sh
+git init
+#+END_SRC
+
+*** Klonen eines bestehenden Repository
+#+BEGIN_SRC sh
+git clone https://github.com/martinguenster/notes.git
+#+END_SRC
+
+#+BEGIN_SRC sh
+git clone https://github.com/martinguenster/notes.git public_notes
+#+END_SRC
+** Änderungen verfolgen und speichern
+*** Zustand von Dateien prüfen
+#+BEGIN_SRC sh
+git status
+#+END_SRC
+short status
+#+BEGIN_SRC sh
+git status -s
+#+END_SRC
+*** Dateien einem Commit hinzufügen
+#+BEGIN_SRC sh
+echo foo > bar.txt
+git add bar.txt
+git commit -m "Die Datei bar.txt mit dem Inhalt foo hinzugefügt." bar.txt
+#+END_SRC
+*** Dateien ignorieren
+#+BEGIN_SRC 
+cat .gitignore
+#+END_SRC
+*** Veränderungen anzeigen
+#+BEGIN_SRC sh
+git diff
+#+END_SRC
+#+BEGIN_SRC sh
+git diff -staged
+#+END_SRC
+*** Dateien entfernen
+#+BEGIN_SRC sh
+git rm bar.txt
+#+END_SRC
+
+#+BEGIN_SRC sh
+git rm --cached bar.txt
+#+END_SRC
+*** Dateien verschieben
+#+BEGIN_SRC sh
+git mv bar.txt foo.txt
+#+END_SRC
+*** Historie anzeigen
+#+BEGIN_SRC sh
+git log
+git log --stat
+git log --pretty=oneline
+git log --pretty=short
+git log --pretty=full
+git log --pretty=fuller
+#+END_SRC
+
+**** Optionen zur Anzeige
+
+| Option          | Beschreibung |
+|-----------------+--------------|
+| -p              |              |
+| --stat          |              |
+| --shortstat     |              |
+| --name-only     |              |
+| --name-status   |              |
+| --abbrev-commit |              |
+| --relative-date |              |
+| --graph         |              |
+| --pretty        |              |
+| --oneline       |              |
+
+**** Optionen zur Limitierung
+
+| Option            | Beschreibung |
+|-------------------+--------------|
+| -<n>              |              |
+| --since, --after  |              |
+| --until, --before |              |
+| --author          |              |
+| --commiter        |              |
+| --grep            |              |
+| -S                |              |
