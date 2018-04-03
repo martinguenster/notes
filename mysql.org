@@ -1,12 +1,20 @@
 #+TITLE: MySQL
 
 * Installation
-
 #+BEGIN_SRC sh
 sudo apt install mysql-server
 #+END_SRC
 
 * Konfiguration
+
+** Benutzer und Rechte
+*** Aktuellen Benutzer anzeigen
+#+BEGIN_SRC sql
+SELECT USER();
+#+END_SRC
+
 * Anwendung
+
 * Monitoring
+
 * Backups
