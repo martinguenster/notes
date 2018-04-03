@@ -8,10 +8,22 @@ sudo apt install mysql-server
 * Konfiguration
 
 ** Benutzer und Rechte
+
 *** Aktuellen Benutzer anzeigen
 #+BEGIN_SRC sql
 SELECT USER();
 #+END_SRC
+
+*** Rechte eines Benutzers anzeigen
+
+#+BEGIN_SRC sql
+SHOW GRANTS;
+#+END_SRC
+
+#+BEGIN_SRC sql
+SHOW GRANTS FOR 'root'@'localhost';
+#+END_SRC
+ 
 
 * Anwendung
 
