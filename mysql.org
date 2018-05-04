@@ -28,9 +28,16 @@ SHOW GRANTS FOR 'root'@'localhost';
 #+END_SRC
 
 ** Character Sets und Collations
-*** Default Character Set und Collation anzeigen
+
+*** Character Set und Collation anzeigen (global)
 #+BEGIN_SRC sql
 SELECT @@character_set_database, @@collation_database;
+#+END_SRC
+
+*** Character Set und Collation anzeigen (für eine Datenbank)
+#+BEGIN_SRC sql
+SELECT DEFAULT_CHARACTER_SET_NAME, DEFAULT_COLLATION_NAME
+FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'db_name';
 #+END_SRC
 
 * Anwendung
