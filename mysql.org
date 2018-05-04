@@ -31,11 +31,11 @@ SHOW GRANTS FOR 'root'@'localhost';
 
 * Backups
 ** Logisches Backup mit /mysqldump/
-Für die Verwendung von /mysqldump/ werden, je nach Anwendung verschiedene Rechte vorausgesetzt.
+Für das Erstellen eines Backups mit /mysqldump/ werden, je nach Anwendung verschiedene Rechte vorausgesetzt.
 - SELECT zum Sichern von Tabellen
 - SHOW VIEWS zum Sichern von Views
 - TRIGGERS zum Sichern von Triggern
 - LOCK TABLES zum Sperren von Tabellen
-
+Für das Einspielen eines Backups mit /mysql/ ist das CREATE-Recht notwending.
 #+BEGIN_SRC sh
 #+END_SRC
