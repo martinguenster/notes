@@ -37,7 +37,18 @@ Für das Erstellen eines Backups mit /mysqldump/ werden, je nach Anwendung versc
 - TRIGGERS zum Sichern von Triggern
 - LOCK TABLES zum Sperren von Tabellen
 Für das Einspielen eines Backups mit /mysql/ ist das CREATE-Recht notwending.
+*** Erstellen ein logischen Backups
+**** Sichern einer Datenbank.
 #+BEGIN_SRC sh
+mysqldump db_name
+#+END_SRC
+**** Sichern mehrerer Tabellen einer Datenbank
+#+BEGIN_SRC sh
+mysqldump db_name tbl_name tb2_name...
+#+END_SRC
+**** Sichern aller Datenbanken
+#+BEGIN_SRC sh
+mysqldump --all-databases
 #+END_SRC
 ** Physikalisches Backup
 ...
