@@ -30,3 +30,12 @@ SHOW GRANTS FOR 'root'@'localhost';
 * Monitoring
 
 * Backups
+** Logisches Backup mit /mysqldump/
+Für die Verwendung von /mysqldump/ werden, je nach Anwendung verschiedene Rechte vorausgesetzt.
+- SELECT zum Sichern von Tabellen
+- SHOW VIEWS zum Sichern von Views
+- TRIGGERS zum Sichern von Triggern
+- LOCK TABLES zum Sperren von Tabellen
+
+#+BEGIN_SRC sh
+#+END_SRC
