@@ -39,3 +39,5 @@ Für das Erstellen eines Backups mit /mysqldump/ werden, je nach Anwendung versc
 Für das Einspielen eines Backups mit /mysql/ ist das CREATE-Recht notwending.
 #+BEGIN_SRC sh
 #+END_SRC
+** Physikalisches Backup
+...
