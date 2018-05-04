@@ -9,27 +9,30 @@ sudo apt install mysql-server
 
 ** Benutzer und Rechte
 
+*** Benutzer user@localhost mit dem Passwort password anlegen
+#+BEGIN_SRC sql
+CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
+#+END_SRC
+
 *** Aktuellen Benutzer anzeigen
 #+BEGIN_SRC sql
 SELECT USER();
 #+END_SRC
 
 *** Rechte eines Benutzers anzeigen
-
 #+BEGIN_SRC sql
 SHOW GRANTS;
 #+END_SRC
-
 #+BEGIN_SRC sql
 SHOW GRANTS FOR 'root'@'localhost';
 #+END_SRC
  
-
 * Anwendung
 
 * Monitoring
 
 * Backups
+
 ** Logisches Backup mit /mysqldump/
 Für das Erstellen eines Backups mit /mysqldump/ werden, je nach Anwendung verschiedene Rechte vorausgesetzt.
 - SELECT zum Sichern von Tabellen
@@ -37,19 +40,24 @@ Für das Erstellen eines Backups mit /mysqldump/ werden, je nach Anwendung versc
 - TRIGGERS zum Sichern von Triggern
 - LOCK TABLES zum Sperren von Tabellen
 Für das Einspielen eines Backups mit /mysql/ ist das CREATE-Recht notwending.
+
 *** Erstellen ein logischen Backups
+
 **** Sichern einer Datenbank.
 #+BEGIN_SRC sh
 mysqldump db_name
 #+END_SRC
+
 **** Sichern mehrerer Tabellen einer Datenbank
 #+BEGIN_SRC sh
 mysqldump db_name tbl_name tb2_name...
 #+END_SRC
+
 **** Sichern aller Datenbanken
 #+BEGIN_SRC sh
 mysqldump --all-databases
 #+END_SRC
+
 *** Erstellen eines logischen Backups zur Datensicherung
 #+BEGIN_SRC sh
 mysqldump \
@@ -63,6 +71,7 @@ mysqldump \
 --no-data \
 -r dump.sql
 #+END_SRC
+
 *** Erstellen eines logischen Backups ohne Daten
 #+BEGIN_SRC sh
 mysqldump \
@@ -76,6 +85,7 @@ mysqldump \
 -r dump.sql \
 db_name
 #+END_SRC
+
 *** Erstellen eines logischen Backups ohne CREATE-Statements
 #+BEGIN_SRC sh
 mysqldump \
@@ -85,5 +95,6 @@ mysqldump \
 -r dump.sql \
 db_name
 #+END_SRC
+
 ** Physikalisches Backup
 ...
