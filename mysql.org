@@ -50,5 +50,18 @@ mysqldump db_name tbl_name tb2_name...
 #+BEGIN_SRC sh
 mysqldump --all-databases
 #+END_SRC
+*** Erstellen eines logischen Backups zur Datensicherung
+#+BEGIN_SRC sh
+mysqldump \
+--user=root \
+--all-databases \
+--single-transaction \
+--triggers \
+--routines \
+--events \
+--hex-blob \
+--no-data \
+-r dump.sql
+#+END_SRC
 ** Physikalisches Backup
 ...
