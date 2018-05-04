@@ -26,7 +26,13 @@ SHOW GRANTS;
 #+BEGIN_SRC sql
 SHOW GRANTS FOR 'root'@'localhost';
 #+END_SRC
- 
+
+** Character Sets und Collations
+*** Default Character Set und Collation anzeigen
+#+BEGIN_SRC sql
+SELECT @@character_set_database, @@collation_database;
+#+END_SRC
+
 * Anwendung
 
 * Monitoring
