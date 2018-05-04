@@ -63,5 +63,27 @@ mysqldump \
 --no-data \
 -r dump.sql
 #+END_SRC
+*** Erstellen eines logischen Backups ohne Daten
+#+BEGIN_SRC sh
+mysqldump \
+--user=root \
+--single-transaction \
+--triggers \
+--routines \
+--events \
+--hex-blob \
+--no-data \
+-r dump.sql \
+db_name
+#+END_SRC
+*** Erstellen eines logischen Backups ohne CREATE-Statements
+#+BEGIN_SRC sh
+mysqldump \
+--user=root \
+--single-transaction \
+--no-create-info=true \
+-r dump.sql \
+db_name
+#+END_SRC
 ** Physikalisches Backup
 ...
