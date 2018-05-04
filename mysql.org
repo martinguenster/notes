@@ -1,9 +1,14 @@
 #+TITLE: MySQL
 
 * Installation
+
+** Installation unter Debian
 #+BEGIN_SRC sh
 sudo apt install mysql-server
 #+END_SRC
+
+** Installation unter Windows
+...
 
 * Konfiguration
 
