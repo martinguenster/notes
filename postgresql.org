@@ -1,6 +1,10 @@
 #+TITLE: PostgreSQL
 
 * Installation
+
+- [[PostgreSQL][https://www.openscg.com/bigsql/postgresql/installers/]]
+- [[PostGIS für Windows][https://postgis.net/windows_downloads/]]
+
 * Konfiguration
 * Anwendung
 * Monitoring
