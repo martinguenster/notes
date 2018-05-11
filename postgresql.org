@@ -2,8 +2,8 @@
 
 * Installation
 
-- [[PostgreSQL][https://www.openscg.com/bigsql/postgresql/installers/]]
-- [[PostGIS für Windows][https://postgis.net/windows_downloads/]]
+- [[https://www.openscg.com/bigsql/postgresql/installers/][PostgreSQL für Windows]]
+- [[https://postgis.net/windows_downloads/][PostGIS für Windows]]
 
 * Konfiguration
 * Anwendung
