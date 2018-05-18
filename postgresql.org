@@ -5,10 +5,8 @@
 
 - [[https://www.openscg.com/bigsql/postgresql/installers/][PostgreSQL für Windows]]
 - [[https://postgis.net/windows_downloads/][PostGIS für Windows]]
-
 - [[https://stackoverflow.com/questions/42806784/how-to-alter-the-path-for-postgres-looking-for-extensions][Bug]]
-
-
+- [[https://www.postgresql.org/ftp/pgadmin/pgadmin4/v3.0/windows/][pgadmin4]]
 
 * Konfiguration
 * Anwendung
