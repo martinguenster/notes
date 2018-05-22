@@ -31,22 +31,24 @@ DESCRIBE departments dept_emp_latest_date;
 #+END_SRC
 
 *** SELECT
+**** Implizite  SELECTs
 #+BEGIN_SRC sql
---tables 
+-- Beispiele für alle Tabellen
 SELECT * FROM	departments;
 SELECT * FROM	dept_emp;
 SELECT * FROM	dept_manager;
 SELECT * FROM	employees;
 SELECT * FROM	salaries;
 SELECT * FROM	titles;
---views
+-- Beispiele für alle Views
 SELECT * FROM	current_dept_emp;
 SELECT * FROM	dept_emp_latest_date;
 #+END_SRC
 
+**** Explizite  SELECTs
 #+BEGIN_SRC sql
-SELECT
-	emp_no,
+-- Beispiel für die Tabelle 'employees'
+SELECT	emp_no,
 	birth_date,
 	first_name,
 	last_name,
