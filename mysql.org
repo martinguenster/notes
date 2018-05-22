@@ -1,15 +1,36 @@
 #+TITLE: MySQL
 * Benutzung
 ** Data Query Language (DQL)
+
+*** SHOW DATABASES
+#+BEGIN_SRC sql
+SHOW DATABASES;
+#+END_SRC
+
 *** USE
 #+BEGIN_SRC sql
-USE classicmodels;
+USE USE employees;;
 #+END_SRC
+
 *** SHOW TABLES
 #+BEGIN_SRC sql
 SHOW TABLES;
 #+END_SRC
+
 *** SELECT
+#+BEGIN_SRC sql
+--tables 
+SELECT * FROM	departments
+SELECT * FROM	dept_emp
+SELECT * FROM	dept_manager
+SELECT * FROM	employees
+SELECT * FROM	salaries
+SELECT * FROM	titles
+--views
+SELECT * FROM	current_dept_emp
+SELECT * FROM	dept_emp_latest_date
+#+END_SRC
+
 *** DISTINCT
 *** WHERE
 *** AND
