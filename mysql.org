@@ -5,6 +5,10 @@
 #+BEGIN_SRC sql
 USE classicmodels;
 #+END_SRC
+*** SHOW TABLES
+#+BEGIN_SRC sql
+SHOW TABLES;
+#+END_SRC
 *** SELECT
 *** DISTINCT
 *** WHERE
