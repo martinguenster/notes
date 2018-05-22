@@ -1,5 +1,9 @@
 #+TITLE: MySQL
-
+* Benutzung
+** Data Query Language (DQL)
+** Data Manipulation Language (DML)
+** Data Control Language (DCL)
+** DTL (Data Transaction Language)
 * Installation
 
 ** Installation unter Debian
