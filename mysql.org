@@ -58,6 +58,13 @@ SELECT	emp_no,
 FROM
 	employees;
 #+END_SRC
+*** LIMIT
+#+BEGIN_SRC sql
+SELECT * FROM employees LIMIT 1;
+SELECT * FROM employees LIMIT 10;
+SELECT * FROM employees LIMIT 100;
+#+END_SRC
+
 
 *** DISTINCT
 #+BEGIN_SRC sql
@@ -105,7 +112,7 @@ WHERE
 	gender = "F"
 OR first_name LIKE 'a%';
 #+END_SRC
-*** LIMIT
+
 *** IN
 *** BETWEEN
 *** LIKE
