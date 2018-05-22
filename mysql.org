@@ -58,7 +58,22 @@ SELECT	emp_no,
 FROM
 	employees;
 #+END_SRC
+
 *** DISTINCT
+#+BEGIN_SRC sql
+-- Beispiel für select ohne DISTINCT
+SELECT
+	gender
+FROM
+	employees;
+	
+-- Beispiel für select mit DISTINCT
+SELECT DISTINCT
+	gender
+FROM
+	employees;
+#+END_SRC
+
 *** WHERE
 *** AND
 *** OR
