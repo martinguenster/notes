@@ -91,7 +91,17 @@ FROM
 WHERE
 	gender = "F";
 #+END_SRC
-	
+
+*** LIKE
+#+BEGIN_SRC sql
+SELECT
+	*
+FROM
+	employees
+WHERE
+	first_name LIKE 'a%';
+#+END_SRC
+
 *** AND
 #+BEGIN_SRC sql
 SELECT
@@ -116,7 +126,7 @@ OR first_name LIKE 'a%';
 
 *** IN
 *** BETWEEN
-*** LIKE
+
 *** ORDER BY
 *** ALIAS
 *** JOIN
