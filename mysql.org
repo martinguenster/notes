@@ -60,6 +60,7 @@ FROM
 #+END_SRC
 *** LIMIT
 #+BEGIN_SRC sql
+-- Beispiel für ein SELECT mit LIMIT auf die Tabelle 'employees'
 SELECT * FROM employees LIMIT 1;
 SELECT * FROM employees LIMIT 10;
 SELECT * FROM employees LIMIT 100;
