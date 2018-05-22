@@ -20,7 +20,7 @@ SHOW TABLES;
 *** DESCRIBE
 #+BEGIN_SRC sql
 DESCRIBE departments;
-DESCRIBE dept_emp:
+DESCRIBE dept_emp;
 DESCRIBE dept_manager;
 DESCRIBE employees;
 DESCRIBE salaries;
