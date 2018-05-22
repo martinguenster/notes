@@ -1,7 +1,10 @@
 #+TITLE: MySQL
 * Benutzung
 ** Data Query Language (DQL)
-*** SHOW
+*** USE
+#+BEGIN_SRC sql
+USE classicmodels;
+#+END_SRC
 *** SELECT
 *** DISTINCT
 *** WHERE
