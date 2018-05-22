@@ -44,6 +44,17 @@ SELECT * FROM	current_dept_emp;
 SELECT * FROM	dept_emp_latest_date;
 #+END_SRC
 
+#+BEGIN_SRC sql
+SELECT
+	emp_no,
+	birth_date,
+	first_name,
+	last_name,
+	gender,
+	hire_date *
+FROM
+	employees;
+#+END_SRC
 *** DISTINCT
 *** WHERE
 *** AND
