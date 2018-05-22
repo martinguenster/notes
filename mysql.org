@@ -1,7 +1,39 @@
 #+TITLE: MySQL
 * Benutzung
 ** Data Query Language (DQL)
+*** SHOW
+*** SELECT
+*** DISTINCT
+*** WHERE
+*** AND
+*** OR
+*** LIMIT
+*** IN
+*** BETWEEN
+*** LIKE
+*** ORDER BY
+*** ALIAS
+*** JOIN
+**** INNER JOIN
+**** LEFT JOIN
+**** RIGHT JOIN
+**** CROSS JOIN
+**** SELF JOIN
+*** GROUP BY
+*** HAVING
+*** Subqueries
+*** UNION
+*** MINUS
+*** INTERSECT
 ** Data Manipulation Language (DML)
+*** INSERT
+*** LAST_INSERT_ID Function
+*** UPDATE
+*** UPDATE JOIN
+*** DELETE
+*** DELETE JOIN
+*** ON DELETE CASCADE
+*** REPLACE
 ** Data Control Language (DCL)
 ** DTL (Data Transaction Language)
 * Installation
