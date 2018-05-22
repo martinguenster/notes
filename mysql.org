@@ -75,8 +75,36 @@ FROM
 #+END_SRC
 
 *** WHERE
+#+BEGIN_SRC sql
+SELECT
+	*
+FROM
+	employees
+WHERE
+	gender = "F";
+#+END_SRC
+	
 *** AND
+#+BEGIN_SRC sql
+SELECT
+	*
+FROM
+	employees
+WHERE
+	gender = "F"
+AND first_name LIKE 'a%';
+#+END_SRC
+
 *** OR
+#+BEGIN_SRC sql
+SELECT
+	*
+FROM
+	employees
+WHERE
+	gender = "F"
+OR first_name LIKE 'a%';
+#+END_SRC
 *** LIMIT
 *** IN
 *** BETWEEN
