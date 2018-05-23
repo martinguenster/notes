@@ -12,3 +12,6 @@
 * Anwendung
 * Monitoring
 * Backups
+** SQL dump
+** File system level backup
+** Continuous archiving
