@@ -206,7 +206,6 @@ sudo apt install mysql-server
 * Administration
 
 ** Benutzer und Rechte
-
 *** Benutzer user@localhost mit dem Passwort password anlegen
 #+BEGIN_SRC sql
 CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
@@ -226,7 +225,6 @@ SHOW GRANTS FOR 'root'@'localhost';
 #+END_SRC
 
 ** Character Sets und Collations
-
 *** Character Set und Collation anzeigen (global)
 #+BEGIN_SRC sql
 SELECT @@character_set_database, @@collation_database;
@@ -238,6 +236,8 @@ SELECT DEFAULT_CHARACTER_SET_NAME, DEFAULT_COLLATION_NAME
 FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'db_name';
 #+END_SRC
 
+** Server SQL Modes
+...
 * Anwendung
 
 * Monitoring
