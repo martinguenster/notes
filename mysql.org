@@ -125,6 +125,14 @@ OR first_name LIKE 'a%';
 #+END_SRC
 
 *** IN
+#+BEGIN_SRC sql
+SELECT
+	*
+FROM
+	departments
+WHERE
+	dept_name IN ('Sales', 'Finance');
+#+END_SRC
 *** BETWEEN
 
 *** ORDER BY
