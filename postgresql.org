@@ -13,6 +13,7 @@
 * Monitoring
 * Backups
 ** SQL Dump
+
 *** Sichern und Zurückspielen einer Datenbank
 Sichern der Datenbank /dbname/ in die Datei /dumpfile/.
 #+BEGIN_SRC sh
@@ -26,6 +27,19 @@ Zurückspielen der Datenbank /dbname/ aus der Datei /dumpfile/ mit Abbruch im Fe
 #+BEGIN_SRC sh
 psql --set ON_ERROR_STOP=on dbname < dumpfile
 #+END_SRC
+
 *** Sichern und Zurückspielen aller Datenbanken
+Sichern aller Datenbanken in die Datei /dumpfile/.
+#+BEGIN_SRC sh
+pg_dumpall > dumpfile
+#+END_SRC
+Zurückspielen aller Datenbanken aus der Datei /dumpfile/.
+#+BEGIN_SRC sh
+psql -f dumpfile postgres
+#+END_SRC
+Sichern aller Cluster-weiten Daten ohne die eigentlichen Datenbanken in die Datei /dumpfile/.
+#+BEGIN_SRC sh
+pg_dumpall --globals-only > dumpfile
+#+END_SRC
 ** File system level backup
 ** Continuous archiving
