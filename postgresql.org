@@ -12,6 +12,16 @@
 * Anwendung
 * Monitoring
 * Backups
-** SQL dump
+** SQL Dump
+*** Sichern und Zurückspielen einer Datenbank
+Sichern der Datenbank /dbname/ in die Datei /dumpfile/.
+#+BEGIN_SRC sh
+pg_dump dbname > dumpfile
+#+END_SRC
+Zurückspielen der Datenbank /dbname/ aus der Datei /dumpfile/.
+#+BEGIN_SRC sh
+psql dbname < dumpfile
+#+END_SRC
+*** Sichern und Zurückspielen aller Datenbanken
 ** File system level backup
 ** Continuous archiving
