@@ -146,6 +146,29 @@ AND '1994-12-31';
 #+END_SRC
 
 *** ORDER BY
+#+BEGIN_SRC sql
+-- Eine aufsteigende Sortierung ist der Standard.
+SELECT
+	*
+FROM
+	employees
+ORDER BY
+	hire_date;
+-- Eine aufsteigende Sortierung explizit angegeben.
+SELECT
+	*
+FROM
+	employees
+ORDER BY
+	hire_date ASC;
+-- Eine absteigende Sortierung explizit angegeben.
+SELECT
+	*
+FROM
+	employees
+ORDER BY
+	hire_date DESC;
+#+END_SRC
 *** ALIAS
 *** JOIN
 **** INNER JOIN
