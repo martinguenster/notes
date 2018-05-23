@@ -9,10 +9,17 @@
 - [[https://www.postgresql.org/ftp/pgadmin/pgadmin4/v3.0/windows/][pgadmin4]]
 
 * Konfiguration
+
 ** Konfigurationsdateien
 - postgresql.conf
 - pg_hba.conf
 - pg_ident.conf
+
+** max_connections (postgresql.conf)
+#+BEGIN_SRC sh
+max_connections = 100			# (change requires restart)
+superuser_reserved_connections = 3	# (change requires restart)
+#+END_SRC
 
 * Anwendung
 * Monitoring
