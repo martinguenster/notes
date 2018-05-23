@@ -52,5 +52,4 @@ Zurückspielen der Datenbank /dbname/ aus der im /custom/-Format gespeicherten D
 pg_restore -d dbname filename
 #+END_SRC
 
-** File system level backup
-** Continuous archiving
+** Point-in-Time Recovery
