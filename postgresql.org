@@ -41,5 +41,16 @@ Sichern aller Cluster-weiten Daten ohne die eigentlichen Datenbanken in die Date
 #+BEGIN_SRC sh
 pg_dumpall --globals-only > dumpfile
 #+END_SRC
+
+*** Sichern und Zurückspielen mit Kompression
+Sichern der Datenbank /dbname/ in die Datei /dumpfile/ im /custom/-Format, dass standardmäßig komprimiert ist.
+#+BEGIN_SRC sh
+pg_dump -Fc dbname > filename
+#+END_SRC
+Zurückspielen der Datenbank /dbname/ aus der im /custom/-Format gespeicherten Datei /dumpfile/.
+#+BEGIN_SRC sh
+pg_restore -d dbname filename
+#+END_SRC
+
 ** File system level backup
 ** Continuous archiving
