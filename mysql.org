@@ -203,7 +203,7 @@ sudo apt install mysql-server
 ** Installation unter Windows
 ...
 
-* Konfiguration
+* Administration
 
 ** Benutzer und Rechte
 
