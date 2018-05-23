@@ -9,6 +9,11 @@
 - [[https://www.postgresql.org/ftp/pgadmin/pgadmin4/v3.0/windows/][pgadmin4]]
 
 * Konfiguration
+** Konfigurationsdateien
+- postgresql.conf
+- pg_hba.conf
+- pg_ident.conf
+
 * Anwendung
 * Monitoring
 * Backups
