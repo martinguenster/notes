@@ -21,6 +21,13 @@ max_connections = 100			# (change requires restart)
 superuser_reserved_connections = 3	# (change requires restart)
 #+END_SRC
 
+** shared_buffers (postgresql.conf)
+Der Wert für /shared_buffers/ sollte ein Zehntel bis ein Viertel der RAM betragen.
+#+BEGIN_SRC sh
+shared_buffers = 128MB      # min 128kB
+                            # (change requires restart)
+#+END_SRC
+
 * Anwendung
 * Monitoring
 * Backups
