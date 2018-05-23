@@ -28,6 +28,16 @@ shared_buffers = 128MB      # min 128kB
                             # (change requires restart)
 #+END_SRC
 
+** max_wal_size (postgresql.conf)
+???
+
+** work_mem (postgresql.conf)
+???
+
+** maintennance_work_mem (postgresql.conf)
+???
+
+
 ** effective_cache_size (postgresql.conf)
 Der Wert für /effective_cache_size/ sollte die Hälfte bis drei Viertel der RAM betragen.
 #+BEGIN_SRC sh
