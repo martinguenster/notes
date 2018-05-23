@@ -133,7 +133,17 @@ FROM
 WHERE
 	dept_name IN ('Sales', 'Finance');
 #+END_SRC
+
 *** BETWEEN
+#+BEGIN_SRC sql
+SELECT
+	*
+FROM
+	employees
+WHERE
+	hire_date BETWEEN '1994-01-01'
+AND '1994-12-31';
+#+END_SRC
 
 *** ORDER BY
 *** ALIAS
