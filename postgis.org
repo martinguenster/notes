@@ -6,3 +6,13 @@
 
 - /geometry/ für einen ausreichend  kleinen Raum
 - /geography/ für einen globalen Raum
+
+** Subtypes
+*** GEOMETRYCOLLECTION
+*** LINEARRING
+*** LINESTRING
+*** MULTILINESTRING
+*** MULTIPOINT
+*** MULTIPOLYGON
+*** POINT
+*** POLYGON
