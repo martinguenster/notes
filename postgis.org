@@ -1,0 +1,8 @@
+#+TITLE: PostGIS
+
+* Installation
+* Anwendung
+** Types
+
+- /geometry/ für einen ausreichend  kleinen Raum
+- /geography/ für einen globalen Raum
