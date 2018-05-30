@@ -3,6 +3,15 @@
 * Installation
 * Anwendung
 ** Tutorial
+
+[[http://workshops.boundlessgeo.com/postgis-intro/][Introduction to PostGIS]]
+
+#+BEGIN_SRC sh
+CREATE DATABASE nyc;
+CREATE EXTENSION postgis;
+SELECT postgis_full_version();
+#+END_SRC
+
 ** Types
 
 - /geometry/ für einen ausreichend  kleinen Raum
