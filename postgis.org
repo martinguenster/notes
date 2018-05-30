@@ -28,7 +28,13 @@ shp2pgsql -I -s 26918 ./postgis-workshop/data/nyc_streets.shp | psql -d nyc -U g
 shp2pgsql -I -s 26918 ./postgis-workshop/data/nyc_neighborhoods.shp | psql -d nyc -U gis
 shp2pgsql -I -s 26918 ./postgis-workshop/data/nyc_subway_stations.shp | psql -d nyc -U gis
 shp2pgsql -I -s 26918 ./postgis-workshop/data/nyc_homicides.shp | psql -d nyc -U gis
+
+
+#+BEGIN_SRC sql
+CREATE OR REPLACE VIEW streets as select ST_AsGeoJSON(geom)as geojson,* from nyc_streets;
 #+END_SRC
+
+
 ** Types
 
 - /geometry/ für einen ausreichend  kleinen Raum
