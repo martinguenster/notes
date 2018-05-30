@@ -6,12 +6,22 @@
 
 [[http://workshops.boundlessgeo.com/postgis-intro/][Introduction to PostGIS]]
 
-#+BEGIN_SRC sh
+#+BEGIN_SRC sql
 CREATE DATABASE nyc;
 CREATE EXTENSION postgis;
 SELECT postgis_full_version();
 #+END_SRC
 
+#+BEGIN_SRC sh
+wget -O postgis_workshop.zip http://files.boundlessgeo.com/workshopmaterials/postgis-workshop-201401.zip
+unzip postgis_workshop.zip
+
+shp2pgsql -I -s 26918 ./postgis-workshop/data/nyc_census_blocks.shp
+shp2pgsql -I -s 26918 ./postgis-workshop/data/nyc_homicides.shp
+shp2pgsql -I -s 26918 ./postgis-workshop/data/nyc_neighborhoods.shp
+shp2pgsql -I -s 26918 ./postgis-workshop/data/nyc_streets.shp
+shp2pgsql -I -s 26918 ./postgis-workshop/data/nyc_subway_stations.shp
+#+END_SRC
 ** Types
 
 - /geometry/ für einen ausreichend  kleinen Raum
