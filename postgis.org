@@ -15,7 +15,7 @@ CREATE EXTENSION postgis;
 SELECT postgis_full_version();
 
 -- Benutzer erstellen und berechtigen
-CREATE USER gis;
+CREATE USER gis WITH PASSWORD 'password';
 GRANT ALL PRIVILEGES ON DATABASE nyc TO gis;
 #+END_SRC
 
