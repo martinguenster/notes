@@ -7,20 +7,27 @@
 [[http://workshops.boundlessgeo.com/postgis-intro/][Introduction to PostGIS]]
 
 #+BEGIN_SRC sql
+-- Datenbank erstellen 
 CREATE DATABASE nyc;
+
+-- Postgis laden
 CREATE EXTENSION postgis;
 SELECT postgis_full_version();
+
+-- Benutzer erstellen und berechtigen
+CREATE USER gis;
+GRANT ALL PRIVILEGES ON DATABASE nyc TO gis;
 #+END_SRC
 
 #+BEGIN_SRC sh
 wget -O postgis_workshop.zip http://files.boundlessgeo.com/workshopmaterials/postgis-workshop-201401.zip
 unzip postgis_workshop.zip
 
-shp2pgsql -I -s 26918 ./postgis-workshop/data/nyc_census_blocks.shp
-shp2pgsql -I -s 26918 ./postgis-workshop/data/nyc_homicides.shp
-shp2pgsql -I -s 26918 ./postgis-workshop/data/nyc_neighborhoods.shp
-shp2pgsql -I -s 26918 ./postgis-workshop/data/nyc_streets.shp
-shp2pgsql -I -s 26918 ./postgis-workshop/data/nyc_subway_stations.shp
+shp2pgsql -I -s 26918 ./postgis-workshop/data/nyc_census_blocks.shp | psql -d nyc -U gis
+shp2pgsql -I -s 26918 ./postgis-workshop/data/nyc_streets.shp | psql -d nyc -U gis
+shp2pgsql -I -s 26918 ./postgis-workshop/data/nyc_neighborhoods.shp | psql -d nyc -U gis
+shp2pgsql -I -s 26918 ./postgis-workshop/data/nyc_subway_stations.shp | psql -d nyc -U gis
+shp2pgsql -I -s 26918 ./postgis-workshop/data/nyc_homicides.shp | psql -d nyc -U gis
 #+END_SRC
 ** Types
 
