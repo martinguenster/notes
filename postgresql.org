@@ -10,6 +10,8 @@
 
 * Anwendung
 ** Konzepte
+- cluster
+- database
 - table
 - row
 - columns
