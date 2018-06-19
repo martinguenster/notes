@@ -16,12 +16,23 @@ Das Verzeichnis, in das Java installiert wird, ist ggf. anzlegen.
 #+BEGIN_SRC powershell
 New-Item $java_install_dir -itemtype directory
 #+END_SRC
+
+Java kann nun automatisch und unbeaufsichtigt installiert werden.
 #+BEGIN_SRC powershell
+$java_installer_path = "$java_installer_dir\jdk-$java_version-$java_os-$java_platform.exe"
+$java_configuration_file_path = "$java_install_dir\jdk-$java_version-$java_os-$java_platform.cfg"
+
 $content = @"
 INSTALL_SILENT=Enable
-INSTALLDIR=D:\java\jre
+INSTALLDIR=$java_install_dir\jdk-$java_version-$java_os-$java_platform
+AUTO_UPDATE=Disable
+REBOOT=Disable
+SPONSORS=Disable
+WEB_ANALYTICS=Disable
 "@
-$content | Out-File  "D:\java\install.cfg"
+$content | Out-File -Encoding ASCII -FilePath $java_configuration_file_path
+
+& $java_installer_path INSTALLCFG=$java_configuration_file_path
 #+END_SRC
 
 
