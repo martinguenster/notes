@@ -1,5 +1,10 @@
+* JBoss EAP 6
+** Installation unter Windows
+*** Installation von Java
+*** Installation des JBoss EAP 7
+*** Einrichtung eines Windows-Dienst
 * JBoss EAP 7
 ** Installation unter Windows
 *** Installation von Java
 *** Installation des JBoss EAP 7
-** Einrichtung eines Windows-Dienst
+*** Einrichtung eines Windows-Dienst
