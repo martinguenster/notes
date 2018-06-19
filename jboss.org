@@ -3,20 +3,28 @@
 ** Installation unter Windows
 
 *** Installation von Java
-Es ist ein Verzeichnis unter D:\java anzulegen, falls dieses noch nicht vorhanden ist.
+Es ist zu bestimmen, welche Java Version installiert werden soll, wo Java installiert werden soll und wo der Installer zu finden ist.
 #+BEGIN_SRC powershell
-New-Item D:\java -itemtype directory
+$java_version = "8u171"
+$java_os = "windows"
+$java_platform = "x64"
+$java_install_dir = "D:\java"
+$java_installer_dir = "D:\downloads"
 #+END_SRC
 
-Es ist ein Java-JDK in der aktuellen Version herunter zu laden.
+Das Verzeichnis, in das alle Java installiert wird, ist ggf. anzlegen.
 #+BEGIN_SRC powershell
-$source = "http://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jdk-8u171-windows-i586.exe"
-$destination = "D:\java\jdk-7u60-windows-i586.exe"
-$client = new-object System.Net.WebClient 
-$cookie = "oraclelicense=accept-securebackup-cookie"
-$client.Headers.Add([System.Net.HttpRequestHeader]::Cookie, $cookie) 
-$client.downloadFile($source, $destination)
+New-Item $java_install_dir -itemtype directory
 #+END_SRC
+#+BEGIN_SRC powershell
+$content = @"
+INSTALL_SILENT=Enable
+INSTALLDIR=D:\java\jre
+"@
+$content | Out-File  "D:\java\install.cfg"
+#+END_SRC
+
+
 
 *** Installation des JBoss EAP 7
 *** Einrichtung eines Windows-Dienst
