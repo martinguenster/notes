@@ -1,6 +1,23 @@
 * JBoss EAP 6
+
 ** Installation unter Windows
+
 *** Installation von Java
+Es ist ein Verzeichnis unter D:\java anzulegen, falls dieses noch nicht vorhanden ist.
+#+BEGIN_SRC powershell
+New-Item D:\java -itemtype directory
+#+END_SRC
+
+Es ist ein Java-JDK in der aktuellen Version herunter zu laden.
+#+BEGIN_SRC powershell
+$source = "http://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jdk-8u171-windows-i586.exe"
+$destination = "D:\java\jdk-7u60-windows-i586.exe"
+$client = new-object System.Net.WebClient 
+$cookie = "oraclelicense=accept-securebackup-cookie"
+$client.Headers.Add([System.Net.HttpRequestHeader]::Cookie, $cookie) 
+$client.downloadFile($source, $destination)
+#+END_SRC
+
 *** Installation des JBoss EAP 7
 *** Einrichtung eines Windows-Dienst
 * JBoss EAP 7
