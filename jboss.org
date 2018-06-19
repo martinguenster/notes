@@ -12,7 +12,7 @@ $java_install_dir = "D:\java"
 $java_installer_dir = "D:\tmp"
 #+END_SRC
 
-Das Verzeichnis, in das alle Java installiert wird, ist ggf. anzlegen.
+Das Verzeichnis, in das Java installiert wird, ist ggf. anzlegen.
 #+BEGIN_SRC powershell
 New-Item $java_install_dir -itemtype directory
 #+END_SRC
