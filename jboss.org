@@ -9,7 +9,7 @@ $java_version = "8u171"
 $java_os = "windows"
 $java_platform = "x64"
 $java_install_dir = "D:\java"
-$java_installer_dir = "D:\downloads"
+$java_installer_dir = "D:\tmp"
 #+END_SRC
 
 Das Verzeichnis, in das alle Java installiert wird, ist ggf. anzlegen.
