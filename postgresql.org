@@ -52,9 +52,10 @@ Der Wert für /effective_cache_size/ sollte die Hälfte bis drei Viertel der RAM
 effective_cache_size = 4GB
 #+END_SRC
 
-* Anwendung
 * Monitoring
+
 * Backups
+
 ** SQL Dump
 
 *** Sichern und Zurückspielen einer Datenbank
