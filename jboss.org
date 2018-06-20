@@ -35,11 +35,19 @@ $content | Out-File -Encoding ASCII -FilePath $java_configuration_file_path
 
 & $java_installer_path INSTALLCFG=$java_configuration_file_path
 #+END_SRC
+
+Das Verzeichnis bin ist der Systemvariable Path hinzuzufügen.
+#+BEGIN_SRC powershell
+$env:Path = "$java_home\bin;"+$env:Path
+[Environment]::SetEnvironmentVariable( "Path", $env:Path,[System.EnvironmentVariableTarget]::Machine ) 
+#+END_SRC
+
 Abschließend ist die Systemvariable JAVA_HOME zu setzen.
 #+BEGIN_SRC powershell
 $env:JAVA_HOME = $java_home
 [Environment]::SetEnvironmentVariable( "JAVA_HOME", $env:Path,[System.EnvironmentVariableTarget]::Machine ) 
 #+END_SRC
+
 
 
 *** Installation des JBoss EAP 7
