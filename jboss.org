@@ -21,10 +21,11 @@ Java kann nun automatisch und unbeaufsichtigt installiert werden.
 #+BEGIN_SRC powershell
 $java_installer_path = "$java_installer_dir\jdk-$java_version-$java_os-$java_platform.exe"
 $java_configuration_file_path = "$java_install_dir\jdk-$java_version-$java_os-$java_platform.cfg"
+$java_home =  $java_install_dir\jdk-$java_version-$java_os-$java_platform
 
 $content = @"
 INSTALL_SILENT=Enable
-INSTALLDIR=$java_install_dir\jdk-$java_version-$java_os-$java_platform
+INSTALLDIR=$java_home
 AUTO_UPDATE=Disable
 REBOOT=Disable
 SPONSORS=Disable
@@ -34,7 +35,11 @@ $content | Out-File -Encoding ASCII -FilePath $java_configuration_file_path
 
 & $java_installer_path INSTALLCFG=$java_configuration_file_path
 #+END_SRC
-
+Abschließend ist die Systemvariable JAVA_HOME zu setzen.
+#+BEGIN_SRC powershell
+$env:JAVA_HOME = $java_home
+[Environment]::SetEnvironmentVariable( "JAVA_HOME", $env:Path,[System.EnvironmentVariableTarget]::Machine ) 
+#+END_SRC
 
 
 *** Installation des JBoss EAP 7
