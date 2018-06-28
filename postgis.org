@@ -31,7 +31,75 @@ shp2pgsql -I -s 26918 ./postgis-workshop/data/nyc_homicides.shp | psql -d nyc -U
 
 
 #+BEGIN_SRC sql
-CREATE OR REPLACE VIEW streets as select ST_AsGeoJSON(geom)as geojson,* from nyc_streets;
+-- nyc_census_blocks
+CREATE OR REPLACE VIEW census_blocks AS SELECT
+	st_asgeojson (
+		ST_Transform (
+			ST_SetSRID (geom, 26918),
+			4326
+		)
+	) :: jsonb AS geometry,
+	(
+		row_to_json (nyc_census_blocks) :: jsonb - 'gid' - 'geom'
+	) AS properties ,*
+FROM
+	nyc_census_blocks;
+    
+-- nyc_homicides
+CREATE OR REPLACE VIEW homicides AS SELECT
+	st_asgeojson (
+		ST_Transform (
+			ST_SetSRID (geom, 26918),
+			4326
+		)
+	) :: jsonb AS geometry,
+	(
+		row_to_json (nyc_homicides) :: jsonb - 'gid' - 'geom'
+	) AS properties ,*
+FROM
+	nyc_homicides;
+    
+-- nyc_neighborhoods
+CREATE OR REPLACE VIEW neighborhoods AS SELECT
+	st_asgeojson (
+		ST_Transform (
+			ST_SetSRID (geom, 26918),
+			4326
+		)
+	) :: jsonb AS geometry,
+	(
+		row_to_json (nyc_neighborhoods) :: jsonb - 'gid' - 'geom'
+	) AS properties ,*
+FROM
+	nyc_neighborhoods;
+    
+-- nyc_streets
+CREATE OR REPLACE VIEW streets AS SELECT
+	st_asgeojson (
+		ST_Transform (
+			ST_SetSRID (geom, 26918),
+			4326
+		)
+	) :: jsonb AS geometry,
+	(
+		row_to_json (nyc_streets) :: jsonb - 'gid' - 'geom'
+	) AS properties ,*
+FROM
+	nyc_streets;
+    
+-- nyc_subway_stations
+CREATE OR REPLACE VIEW subway_stations AS SELECT
+	st_asgeojson (
+		ST_Transform (
+			ST_SetSRID (geom, 26918),
+			4326
+		)
+	) :: jsonb AS geometry,
+	(
+		row_to_json (nyc_subway_stations) :: jsonb - 'gid' - 'geom'
+	) AS properties ,*
+FROM
+	nyc_subway_stations;
 #+END_SRC
 
 
