@@ -8,6 +8,11 @@
 - [[https://stackoverflow.com/questions/42806784/how-to-alter-the-path-for-postgres-looking-for-extensions][Bug]]
 - [[https://www.postgresql.org/ftp/pgadmin/pgadmin4/v3.0/windows/][pgadmin4]]
 
+** Installation unter Linux (Debian)
+#+BEGIN_SRC sh :dir /sudo:: :results output silent
+apt install postgresql
+#+END_SRC
+
 * Anwendung
 ** Konzepte
 - cluster
