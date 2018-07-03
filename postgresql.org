@@ -13,6 +13,24 @@
 apt install postgresql
 #+END_SRC
 
+* Starten und Stoppen von PostgreSQL
+** Starten und Stoppen von PostgreSQL unter Windows
+** Starten und Stoppen von PostgreSQL unter Linux
+Der aktuelle Status des Service ~postgresql~ kann mit dem folgenden Befehl erfragt werden.
+#+BEGIN_SRC sh :dir /sudo:: :results output silent
+systemctl status postgresql
+#+END_SRC
+Der Service ~postgresql~ kann mit dem folgenden Befehl gestertet werden.
+#+BEGIN_SRC sh :dir /sudo:: :results output silent
+systemctl start postgresql
+#+END_SRC
+Der Service ~postgresql~ kann mit dem folgenden Befehl gestoppt werden.
+#+BEGIN_SRC sh :dir /sudo:: :results output silent
+systemctl stop postgresql
+#+END_SRC
+
+
+
 * Anwendung
 ** Konzepte
 - cluster
