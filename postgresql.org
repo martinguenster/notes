@@ -3,35 +3,121 @@
 * Installation
 
 ** Installation unter Windows
+
 - [[https://www.openscg.com/bigsql/postgresql/installers/][PostgreSQL für Windows]]
 - [[https://postgis.net/windows_downloads/][PostGIS für Windows]]
 - [[https://stackoverflow.com/questions/42806784/how-to-alter-the-path-for-postgres-looking-for-extensions][Bug]]
 - [[https://www.postgresql.org/ftp/pgadmin/pgadmin4/v3.0/windows/][pgadmin4]]
 
 ** Installation unter Linux (Debian)
+
 #+BEGIN_SRC sh :dir /sudo:: :results output silent
 apt install postgresql
 #+END_SRC
 
-* Starten und Stoppen von PostgreSQL
-** Starten und Stoppen von PostgreSQL unter Windows
-** Starten und Stoppen von PostgreSQL unter Linux
+* Administration
+
+** Starten und Stoppen von PostgreSQL
+
+*** Starten und Stoppen von PostgreSQL unter Windows
+
+*** Starten und Stoppen von PostgreSQL unter Linux
+
 Der aktuelle Status des Service ~postgresql~ kann mit dem folgenden Befehl erfragt werden.
 #+BEGIN_SRC sh :dir /sudo:: :results output silent
 systemctl status postgresql
 #+END_SRC
+
 Der Service ~postgresql~ kann mit dem folgenden Befehl gestertet werden.
 #+BEGIN_SRC sh :dir /sudo:: :results output silent
 systemctl start postgresql
 #+END_SRC
+
 Der Service ~postgresql~ kann mit dem folgenden Befehl gestoppt werden.
 #+BEGIN_SRC sh :dir /sudo:: :results output silent
 systemctl stop postgresql
 #+END_SRC
 
+** Benutzerverwaltung
 
+*** Anlegen eines Benutzers
+
+Der folgende Befehl legt den Benutzer ~martin~ mit dem Passwort ~geheim~.
+#+BEGIN_SRC sql
+CREATE ROLE martin WITH PASSWORD 'geheim';
+#+END_SRC
+
+*** Löschen eines Benutzers
+
+Der folgende Befehl löscht den Benutzer ~martin~.
+#+BEGIN_SRC sql
+DROP ROLE martin;
+#+END_SRC
+
+*** Benutzer Zugriff auf eine Datenbank gewähren
+
+Der folgende Befehl gewärt dem Benutzer ~martin~ Zugriff auf die Datenbank ~martin~.
+#+BEGIN_SRC sql
+GRANT ALL ON DATABASE martin TO martin;
+#+END_SRC
+** Konfiguration
+
+*** Konfigurationsdateien
+- postgresql.conf
+- pg_hba.conf
+- pg_ident.conf
+  
+* Datensicherungen
+
+** Sichern und Zurückspielen
+
+** Sichern und Zurückspielen einer Datenbank
+
+Sichern der Datenbank /dbname/ in die Datei /dumpfile/.
+#+BEGIN_SRC sh
+pg_dump dbname > dumpfile
+#+END_SRC
+
+Zurückspielen der Datenbank /dbname/ aus der Datei /dumpfile/.
+#+BEGIN_SRC sh
+psql dbname < dumpfile
+#+END_SRC
+
+Zurückspielen der Datenbank /dbname/ aus der Datei /dumpfile/ mit Abbruch im Fehlerfall.
+#+BEGIN_SRC sh
+psql --set ON_ERROR_STOP=on dbname < dumpfile
+#+END_SRC
+
+** Sichern und Zurückspielen aller Datenbanken
+
+Sichern aller Datenbanken in die Datei /dumpfile/.
+#+BEGIN_SRC sh
+pg_dumpall > dumpfile
+#+END_SRC
+
+Zurückspielen aller Datenbanken aus der Datei /dumpfile/.
+#+BEGIN_SRC sh
+psql -f dumpfile postgres
+#+END_SRC
+
+Sichern aller Cluster-weiten Daten ohne die eigentlichen Datenbanken in die Datei /dumpfile/.
+#+BEGIN_SRC sh
+pg_dumpall --globals-only > dumpfile
+#+END_SRC
+
+** Sichern und Zurückspielen mit Kompression
+Sichern der Datenbank /dbname/ in die Datei /dumpfile/ im /custom/-Format, dass standardmäßig komprimiert ist.
+#+BEGIN_SRC sh
+pg_dump -Fc dbname > filename
+#+END_SRC
+
+Zurückspielen der Datenbank /dbname/ aus der im /custom/-Format gespeicherten Datei /dumpfile/.
+#+BEGIN_SRC sh
+pg_restore -d dbname filename
+#+END_SRC
 
 * Anwendung
+
 ** Konzepte
 - cluster
 - database
@@ -39,84 +125,9 @@ systemctl stop postgresql
 - row
 - columns
 
-* Konfiguration
-
-** Konfigurationsdateien
-- postgresql.conf
-- pg_hba.conf
-- pg_ident.conf
-
-** max_connections (postgresql.conf)
-#+BEGIN_SRC sh
-max_connections = 100			# (change requires restart)
-superuser_reserved_connections = 3	# (change requires restart)
+** Datenbanken
+*** Anlegen einer Datenbank
+Der folgende Befehl legt die Datenbank ~martin~ an.
+#+BEGIN_SRC sql
+CREATE DATABASE martin;
 #+END_SRC
-
-** shared_buffers (postgresql.conf)
-Der Wert für /shared_buffers/ sollte ein Zehntel bis ein Viertel der RAM betragen.
-#+BEGIN_SRC sh
-shared_buffers = 128MB      # min 128kB
-                            # (change requires restart)
-#+END_SRC
-
-** max_wal_size (postgresql.conf)
-???
-
-** work_mem (postgresql.conf)
-???
-
-** maintennance_work_mem (postgresql.conf)
-???
-
-
-** effective_cache_size (postgresql.conf)
-Der Wert für /effective_cache_size/ sollte die Hälfte bis drei Viertel der RAM betragen.
-#+BEGIN_SRC sh
-effective_cache_size = 4GB
-#+END_SRC
-
-* Monitoring
-
-* Backups
-
-** SQL Dump
-
-*** Sichern und Zurückspielen einer Datenbank
-Sichern der Datenbank /dbname/ in die Datei /dumpfile/.
-#+BEGIN_SRC sh
-pg_dump dbname > dumpfile
-#+END_SRC
-Zurückspielen der Datenbank /dbname/ aus der Datei /dumpfile/.
-#+BEGIN_SRC sh
-psql dbname < dumpfile
-#+END_SRC
-Zurückspielen der Datenbank /dbname/ aus der Datei /dumpfile/ mit Abbruch im Fehlerfall.
-#+BEGIN_SRC sh
-psql --set ON_ERROR_STOP=on dbname < dumpfile
-#+END_SRC
-
-*** Sichern und Zurückspielen aller Datenbanken
-Sichern aller Datenbanken in die Datei /dumpfile/.
-#+BEGIN_SRC sh
-pg_dumpall > dumpfile
-#+END_SRC
-Zurückspielen aller Datenbanken aus der Datei /dumpfile/.
-#+BEGIN_SRC sh
-psql -f dumpfile postgres
-#+END_SRC
-Sichern aller Cluster-weiten Daten ohne die eigentlichen Datenbanken in die Datei /dumpfile/.
-#+BEGIN_SRC sh
-pg_dumpall --globals-only > dumpfile
-#+END_SRC
-
-*** Sichern und Zurückspielen mit Kompression
-Sichern der Datenbank /dbname/ in die Datei /dumpfile/ im /custom/-Format, dass standardmäßig komprimiert ist.
-#+BEGIN_SRC sh
-pg_dump -Fc dbname > filename
-#+END_SRC
-Zurückspielen der Datenbank /dbname/ aus der im /custom/-Format gespeicherten Datei /dumpfile/.
-#+BEGIN_SRC sh
-pg_restore -d dbname filename
-#+END_SRC
-
-** Point-in-Time Recovery
