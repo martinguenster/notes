@@ -41,5 +41,5 @@ $env:Path = "$java_home\bin;"+$env:Path
 Abschließend ist die Systemvariable JAVA_HOME zu setzen.
 #+BEGIN_SRC powershell
 $env:JAVA_HOME = $java_home
-[Environment]::SetEnvironmentVariable( "JAVA_HOME", $env:Path,[System.EnvironmentVariableTarget]::Machine ) 
+[Environment]::SetEnvironmentVariable( "JAVA_HOME", $env:JAVA_HOME,[System.EnvironmentVariableTarget]::Machine ) 
 #+END_SRC
