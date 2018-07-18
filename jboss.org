@@ -32,6 +32,11 @@ D:\jboss
 └── jbcs-jsvc-1.0
 #+END_SRC
 
+Bevor der Windows-Dienst eingerichtet werden kann, ist ein JBoss EAP-Benutzer einzurichen, der über den Controller den JBoss EAP beenden darf.
+#+BEGIN_SRC powershell
+D:\jboss\jboss-eap-7.1\bin\add-user.bat --user admin --password geheim
+#+END_SRC
+
 Der folgende Befehl richtet den JBoss EAP als Windows-Dienst mit dem Namen ~jboss~ ein.
 #+BEGIN_SRC powershell
 D:\jboss\jboss-eap-7.1\bin\service.bat install /name jboss
