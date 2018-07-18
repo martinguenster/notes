@@ -1,11 +1,6 @@
-* JBoss EAP 6
-** Installation unter Windows
-*** Installation des JBoss EAP 7
-*** Einrichtung eines Windows-Dienst
-* JBoss EAP 7
-** Installation unter Windows
 
-*** Installation des JBoss EAP 7
+* JBoss EAP 7
+** Installation des JBoss EAP 7
 Es ist zu bestimmen, welche JBoss EAP-Version installiert werden soll, wo der JBoss EAP installiert werden soll und wo das Zip zu finden ist.
 #+BEGIN_SRC powershell
 $jboss_version = "7.1.0"
@@ -18,7 +13,7 @@ Nun muss der JBoss EAP nur noch entpackt werde.
 ...
 #+END_SRC
 
-*** Einrichtung eines Windows-Dienst
+** Einrichtung eines Windows-Dienst für den JBoss EAP 7
 Zunächst sind die Systemvariablen ~JBOSS_HOME~ und ~NOPAUSE~ zu setzen.
 #+BEGIN_SRC powershell
 $env:JBOSS_HOME = "D:\jboss\jboss-eap-7.1"
