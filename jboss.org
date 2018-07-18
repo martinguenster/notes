@@ -6,6 +6,12 @@
 ** Installation unter Windows
 
 *** Installation des JBoss EAP 7
+Es ist zu bestimmen, welche JBoss EAP-Version installiert werden soll, wo der JBoss EAP installiert werden soll und wo das Zip zu finden ist.
+#+BEGIN_SRC powershell
+$jboss_version = "7.1.0"
+$jboss_install_dir = "D:\jboss"
+$jboss_zip_dir = "D:\tmp"
+#+END_SRC
 Abschließend ist die Systemvariable EAP_HOME zu setzen.
 #+BEGIN_SRC powershell
 $env:EAP_HOME = $eap_home
