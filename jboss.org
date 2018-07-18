@@ -22,8 +22,8 @@ Nun muss der JBoss EAP nur noch entpackt werde.
 Zunächst sind die Systemvariablen ~JBOSS_HOME~ und ~NOPAUSE~ zu setzen.
 #+BEGIN_SRC powershell
 $env:JBOSS_HOME = "D:\jboss\jboss-eap-7.1"
-[Environment]::SetEnvironmentVariable( "JBOSS_HOME", $env:Path,[System.EnvironmentVariableTarget]::Machine) 
+[Environment]::SetEnvironmentVariable( "JBOSS_HOME", $env:JBOSS_HOME, [System.EnvironmentVariableTarget]::Machine) 
 
 $env:NOPAUSE = 1
-[Environment]::SetEnvironmentVariable( "NOPAUSE", $env:Path,[System.EnvironmentVariableTarget]::Machine) 
+[Environment]::SetEnvironmentVariable( "NOPAUSE", $env:NOPAUSE, [System.EnvironmentVariableTarget]::Machine) 
 #+END_SRC
