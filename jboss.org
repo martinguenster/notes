@@ -29,11 +29,26 @@ $env:NOPAUSE = 1
 #+END_SRC
 
 Zum Erstellen des Windows-Dienst wird das /JBoss Core Services Jsvc Package/ verwendet, das von [[https://access.redhat.com/jbossnetwork/restricted/listSoftware.html][RedHat]] heruntergeladen werden kann. Es ist ebenfalls unter dem ~$jboss_install_dir~ zu entpacken, sodass sich z.B. die folgende Verzeichnisstuktur ergibt.
-
 #+BEGIN_SRC
 D:\jboss
 ├── jboss-eap-7.1
 │   ├── bin
 │   └── ...
 └── jbcs-jsvc-1.0
+#+END_SRC
+
+Der folgende Befehl richtet den JBoss EAP als Windows-Dienst mit dem Namen ~jboss~ ein.
+#+BEGIN_SRC powershell
+D:\jboss\jboss-eap-7.1\bin\service.bat install /name jboss
+#+END_SRC
+
+Das erfolgreiche Einrichten des Windows-Diensts wird mit den an ~prunsrv.exe~ ubergebenen Paramter bestätigt.
+#+BEGIN_SRC powershell
+"D:\jboss\jboss-eap-7.1\..\jbcs-jsvc-1.0\sbin\prunsrv.exe" install JBoss  --DisplayName=JBoss --Description="JBoss Enter
+prise Application Platform 7" --LogLevel=INFO --LogPath="D:\jboss\jboss-eap-7.1\standalone\log" --LogPrefix=service --St
+dOutput=auto --StdError=auto --StartMode=exe --Startup=manual --StartImage=cmd.exe --StartPath="D:\jboss\jboss-eap-7.1\b
+in" ++StartParams="/c#set#NOPAUSE=Y#&&#standalone.bat#-Djboss.server.base.dir=D:\jboss\jboss-eap-7.1\standalone#--server
+-config=standalone.xml" --StopMode=exe --StopImage=cmd.exe --StopPath="D:\jboss\jboss-eap-7.1\bin"  ++StopParams="/c jbo
+ss-cli.bat --controller=localhost:9990 --connect  --command=:shutdown"
+Service JBoss installed
 #+END_SRC
