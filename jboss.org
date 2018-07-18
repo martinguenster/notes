@@ -4,6 +4,11 @@
 *** Einrichtung eines Windows-Dienst
 * JBoss EAP 7
 ** Installation unter Windows
-*** Installation von Java
+
 *** Installation des JBoss EAP 7
+Abschließend ist die Systemvariable EAP_HOME zu setzen.
+#+BEGIN_SRC powershell
+$env:EAP_HOME = $eap_home
+[Environment]::SetEnvironmentVariable( "JEAP_HOME", $env:Path,[System.EnvironmentVariableTarget]::Machine ) 
+#+END_SRC
 *** Einrichtung eines Windows-Dienst
