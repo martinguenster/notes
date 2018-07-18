@@ -12,6 +12,11 @@ $jboss_version = "7.1.0"
 $jboss_install_dir = "D:\jboss"
 $jboss_zip_dir = "D:\tmp"
 #+END_SRC
+Nun muss der JBoss EAP nur noch entpackt werde.
+
+#+BEGIN_SRC powershell
+...
+#+END_SRC
 Abschließend ist die Systemvariable EAP_HOME zu setzen.
 #+BEGIN_SRC powershell
 $env:EAP_HOME = $eap_home
