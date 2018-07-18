@@ -27,3 +27,13 @@ $env:JBOSS_HOME = "D:\jboss\jboss-eap-7.1"
 $env:NOPAUSE = 1
 [Environment]::SetEnvironmentVariable( "NOPAUSE", $env:NOPAUSE, [System.EnvironmentVariableTarget]::Machine) 
 #+END_SRC
+
+Zum Erstellen des Windows-Dienst wird das /JBoss Core Services Jsvc Package/ verwendet, das von [[https://access.redhat.com/jbossnetwork/restricted/listSoftware.html][RedHat]] heruntergeladen werden kann. Es ist ebenfalls unter dem ~$jboss_install_dir~ zu entpacken, sodass sich z.B. die folgende Verzeichnisstuktur ergibt.
+
+#+BEGIN_SRC
+D:\jboss
+├── jboss-eap-7.1
+│   ├── bin
+│   └── ...
+└── jbcs-jsvc-1.0
+#+END_SRC
