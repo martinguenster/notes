@@ -55,3 +55,8 @@ prunsrv.exe install JBoss
 --StopImage=cmd.exe 
 --StopPath="D:\jboss\jboss-eap-7.1\bin"  ++StopParams="/c jboss-cli.bat --controller=localhost:9990 --connect  --command=:shutdown"
 #+END_SRC
+
+Der folgende Befehl entfernt den JBoss EAP als Windows-Dienst.
+#+BEGIN_SRC powershell
+D:\jboss\jboss-eap-7.1\bin\service.bat uninstall /name jboss
+#+END_SRC
