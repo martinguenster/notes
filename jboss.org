@@ -76,13 +76,13 @@ New-Item $jboss_install_dir -itemtype directory
 
 Nun muss der JBoss EAP nur noch entpackt werde.
 #+BEGIN_SRC powershell
-Expand-Archive "${software}\jboss-eap-${jboss_version}*.zip" -DestinationPath "$jboss_install_dir"
+Expand-Archive "${software}\jboss-eap-${jboss_version}*.zip" -DestinationPath "${jboss_install_dir}"
 #+END_SRC
 
 ** Einrichtung eines Windows-Dienst für den JBoss EAP 7
 Zunächst sind die Systemvariablen ~JBOSS_HOME~ und ~NOPAUSE~ zu setzen.
 #+BEGIN_SRC powershell
-$env:JBOSS_HOME = "D:\jboss\7.1.0\jboss-eap-7.1"
+$env:JBOSS_HOME = "${jboss_install_dir}\jboss-eap-${jboss_version}"
 [Environment]::SetEnvironmentVariable( "JBOSS_HOME", $env:JBOSS_HOME, [System.EnvironmentVariableTarget]::Machine) 
 
 $env:NOPAUSE = 1
