@@ -76,7 +76,7 @@ New-Item $jboss_install_dir -itemtype directory
 
 Nun muss der JBoss EAP nur noch entpackt werde.
 #+BEGIN_SRC powershell
-...
+Expand-Archive "${software}\jboss-eap-${jboss_version}.zip" -DestinationPath "$jboss_install_dir\$jboss_version"
 #+END_SRC
 
 ** Einrichtung eines Windows-Dienst für den JBoss EAP 7
