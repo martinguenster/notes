@@ -65,3 +65,5 @@ Der folgende Befehl entfernt den JBoss EAP als Windows-Dienst.
 #+BEGIN_SRC powershell
 D:\jboss\jboss-eap-7.1\bin\service.bat uninstall /name jboss
 #+END_SRC
+
+** Installation mehrere JBoss EAP 7-Instanzen
