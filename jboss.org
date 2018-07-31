@@ -16,7 +16,7 @@ $software = "D:\software"
 ** Installation von Java 
 Es ist zu bestimmen, welche Java Version installiert werden soll, wo Java installiert werden soll und wo der Installer zu finden ist.
 #+BEGIN_SRC powershell
-$java_version = "8u171"
+$java_version = "10.0.2"
 $java_os = "windows"
 $java_platform = "x64"
 $java_install_dir = "D:\java"
@@ -29,7 +29,7 @@ New-Item $java_install_dir -itemtype directory
 
 Java kann nun automatisch und unbeaufsichtigt installiert werden.
 #+BEGIN_SRC powershell
-$java_installer_path = "$software\jdk-$java_version-$java_os-$java_platform.exe"
+$java_installer_path = "${software}\jdk-${java_version}_${java_os}-${java_platform}_bin.exe"
 $java_configuration_file_path = "$java_install_dir\jdk-$java_version-$java_os-$java_platform.cfg"
 $java_home =  "$java_install_dir\jdk-$java_version-$java_os-$java_platform"
 
@@ -62,25 +62,11 @@ $env:JAVA_HOME = $java_home
 * JBoss EAP 7
 Die /JBoss Enterprise Application Platform 7/ läßt sich z.B. unter Windows betreiben. 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ** Installation des JBoss EAP 7
 Es ist zu bestimmen, welche JBoss EAP-Version installiert werden soll, wo der JBoss EAP installiert werden soll und wo das Zip zu finden ist.
 #+BEGIN_SRC powershell
 $jboss_version = "7.1.0"
 $jboss_install_dir = "D:\jboss"
-$jboss_zip_dir = "D:\tmp"
 #+END_SRC
 
 Nun muss der JBoss EAP nur noch entpackt werde.
