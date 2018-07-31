@@ -1,5 +1,8 @@
+Die /JBoss Enterprise Application Platform/ (kurz /JBoss EAP/) ist in den Major-Versionen 6 und 7 verfügbar. Die folgenden Notitzen beschreiben die Installation von /JBoss EAP 6/ und /JBoss EAP 7/ unter Microsoft-Windows sowie Maßnahmen, die wärend des Betriebs durzuführen sind.
 
-* JBoss EAP 7
+Soweit möglich werden alle vorbereitenden, nicht versionsspezifischen Maßnahmen unter dem Punkt /Vorbeitende Maßnahmen für die Installtion JBoss EAP/ zusammengafaßt.
+
+* Vorbeitende Maßnahmen für die Installtion der JBoss EAP 
 ** Installation von Java 
 Es ist zu bestimmen, welche Java Version installiert werden soll, wo Java installiert werden soll und wo der Installer zu finden ist.
 #+BEGIN_SRC powershell
@@ -45,6 +48,12 @@ Abschließend ist die Systemvariable JAVA_HOME zu setzen.
 $env:JAVA_HOME = $java_home
 [Environment]::SetEnvironmentVariable( "JAVA_HOME", $env:JAVA_HOME,[System.EnvironmentVariableTarget]::Machine ) 
 #+END_SRC
+
+* JBoss EAP 6
+* JBoss EAP 7
+Die /JBoss Enterprise Application Platform 7/ läßt sich z.B. unter Windows betreiben. 
+
+
 
 
 
