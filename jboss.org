@@ -82,7 +82,7 @@ Expand-Archive "${software}\jboss-eap-${jboss_version}.zip" -DestinationPath "$j
 ** Einrichtung eines Windows-Dienst für den JBoss EAP 7
 Zunächst sind die Systemvariablen ~JBOSS_HOME~ und ~NOPAUSE~ zu setzen.
 #+BEGIN_SRC powershell
-$env:JBOSS_HOME = "D:\jboss\jboss-eap-7.1"
+$env:JBOSS_HOME = "D:\jboss\7.1.0\jboss-eap-7.1"
 [Environment]::SetEnvironmentVariable( "JBOSS_HOME", $env:JBOSS_HOME, [System.EnvironmentVariableTarget]::Machine) 
 
 $env:NOPAUSE = 1
