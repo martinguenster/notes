@@ -29,7 +29,7 @@ New-Item $java_install_dir -itemtype directory
 
 Java kann nun automatisch und unbeaufsichtigt installiert werden.
 #+BEGIN_SRC powershell
-$java_installer_path = "$java_installer_dir\jdk-$java_version-$java_os-$java_platform.exe"
+$java_installer_path = "$software\jdk-$java_version-$java_os-$java_platform.exe"
 $java_configuration_file_path = "$java_install_dir\jdk-$java_version-$java_os-$java_platform.cfg"
 $java_home =  "$java_install_dir\jdk-$java_version-$java_os-$java_platform"
 
