@@ -69,6 +69,11 @@ $jboss_version = "7.1.0"
 $jboss_install_dir = "D:\jboss"
 #+END_SRC
 
+Das Verzeichnis, in die JBoss EAP installiert wird, ist ggf. anzlegen.
+#+BEGIN_SRC powershell
+New-Item $jboss_install_dir -itemtype directory
+#+END_SRC
+
 Nun muss der JBoss EAP nur noch entpackt werde.
 #+BEGIN_SRC powershell
 ...
