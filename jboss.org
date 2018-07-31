@@ -4,7 +4,15 @@ Die /JBoss Enterprise Application Platform/ (kurz /JBoss EAP/) ist in den Major-
 
 Soweit möglich werden alle vorbereitenden, nicht versionsspezifischen Maßnahmen unter dem Punkt /Vorbeitende Maßnahmen für die Installtion JBoss EAP/ zusammengafaßt.
 
-* Vorbeitende Maßnahmen für die Installtion der JBoss EAP 
+* Vorbeitende Maßnahmen für die Installtion der JBoss EAP
+
+** Softwarequelle
+
+Im Folgenden wird davon ausgegangen, dass die zu installiernde Software an einer zentralen Stelle ~D:\software~ im Dateisystem liegt, die in der Variablen ~$software~ abgelegt ist.
+#+BEGIN_SRC powershell
+$software = "D:\software"
+#+END_SRC
+
 ** Installation von Java 
 Es ist zu bestimmen, welche Java Version installiert werden soll, wo Java installiert werden soll und wo der Installer zu finden ist.
 #+BEGIN_SRC powershell
@@ -12,7 +20,6 @@ $java_version = "8u171"
 $java_os = "windows"
 $java_platform = "x64"
 $java_install_dir = "D:\java"
-$java_installer_dir = "D:\tmp"
 #+END_SRC
 
 Das Verzeichnis, in das Java installiert wird, ist ggf. anzlegen.
