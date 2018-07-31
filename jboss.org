@@ -1,3 +1,5 @@
+#+TITLE: JBoss Enterprise Application Platform
+
 Die /JBoss Enterprise Application Platform/ (kurz /JBoss EAP/) ist in den Major-Versionen 6 und 7 verfügbar. Die folgenden Notitzen beschreiben die Installation von /JBoss EAP 6/ und /JBoss EAP 7/ unter Microsoft-Windows sowie Maßnahmen, die wärend des Betriebs durzuführen sind.
 
 Soweit möglich werden alle vorbereitenden, nicht versionsspezifischen Maßnahmen unter dem Punkt /Vorbeitende Maßnahmen für die Installtion JBoss EAP/ zusammengafaßt.
