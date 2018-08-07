@@ -1,22 +1,88 @@
+#+TITLE: JBoss Enterprise Application Platform
 
+Die /JBoss Enterprise Application Platform/ (kurz /JBoss EAP/) ist in den Major-Versionen 6 und 7 verfügbar. Die folgenden Notitzen beschreiben die Installation von /JBoss EAP 6/ und /JBoss EAP 7/ unter Microsoft-Windows sowie Maßnahmen, die wärend des Betriebs durzuführen sind.
+
+Soweit möglich werden alle vorbereitenden, nicht versionsspezifischen Maßnahmen unter dem Punkt /Vorbeitende Maßnahmen für die Installtion JBoss EAP/ zusammengafaßt.
+
+* Vorbeitende Maßnahmen für die Installtion der JBoss EAP
+
+** Softwarequelle
+
+Im Folgenden wird davon ausgegangen, dass die zu installiernde Software an einer zentralen Stelle ~D:\software~ im Dateisystem liegt, die in der Variablen ~$software~ abgelegt ist.
+#+BEGIN_SRC powershell
+$software = "D:\software"
+#+END_SRC
+
+** Installation von Java 
+Es ist zu bestimmen, welche Java Version installiert werden soll, wo Java installiert werden soll und wo der Installer zu finden ist.
+#+BEGIN_SRC powershell
+$java_version = "10.0.2"
+$java_os = "windows"
+$java_platform = "x64"
+$java_install_dir = "D:\java"
+#+END_SRC
+
+Das Verzeichnis, in das Java installiert wird, ist ggf. anzlegen.
+#+BEGIN_SRC powershell
+New-Item $java_install_dir -itemtype directory
+#+END_SRC
+
+Java kann nun automatisch und unbeaufsichtigt installiert werden.
+#+BEGIN_SRC powershell
+$java_installer_path = "${software}\jdk-${java_version}_${java_os}-${java_platform}_bin.exe"
+$java_configuration_file_path = "$java_install_dir\jdk-$java_version-$java_os-$java_platform.cfg"
+$java_home =  "$java_install_dir\jdk-$java_version-$java_os-$java_platform"
+
+$content = @"
+INSTALL_SILENT=Enable
+INSTALLDIR=$java_home
+AUTO_UPDATE=Disable
+REBOOT=Disable
+SPONSORS=Disable
+WEB_ANALYTICS=Disable
+"@
+$content | Out-File -Encoding ASCII -FilePath $java_configuration_file_path
+
+& $java_installer_path INSTALLCFG=$java_configuration_file_path
+#+END_SRC
+
+Das Verzeichnis bin ist der Systemvariable Path hinzuzufügen.
+#+BEGIN_SRC powershell
+$env:Path = "$java_home\bin;"+$env:Path
+[Environment]::SetEnvironmentVariable( "Path", $env:Path,[System.EnvironmentVariableTarget]::Machine ) 
+#+END_SRC
+
+Abschließend ist die Systemvariable JAVA_HOME zu setzen.
+#+BEGIN_SRC powershell
+$env:JAVA_HOME = $java_home
+[Environment]::SetEnvironmentVariable( "JAVA_HOME", $env:JAVA_HOME,[System.EnvironmentVariableTarget]::Machine ) 
+#+END_SRC
+
+* JBoss EAP 6
 * JBoss EAP 7
+Die /JBoss Enterprise Application Platform 7/ läßt sich z.B. unter Windows betreiben. 
+
 ** Installation des JBoss EAP 7
 Es ist zu bestimmen, welche JBoss EAP-Version installiert werden soll, wo der JBoss EAP installiert werden soll und wo das Zip zu finden ist.
 #+BEGIN_SRC powershell
-$jboss_version = "7.1.0"
+$jboss_version = "7.1"
 $jboss_install_dir = "D:\jboss"
-$jboss_zip_dir = "D:\tmp"
+#+END_SRC
+
+Das Verzeichnis, in die JBoss EAP installiert wird, ist ggf. anzlegen.
+#+BEGIN_SRC powershell
+New-Item $jboss_install_dir -itemtype directory
 #+END_SRC
 
 Nun muss der JBoss EAP nur noch entpackt werde.
 #+BEGIN_SRC powershell
-...
+Expand-Archive "${software}\jboss-eap-${jboss_version}*.zip" -DestinationPath "${jboss_install_dir}"
 #+END_SRC
 
 ** Einrichtung eines Windows-Dienst für den JBoss EAP 7
 Zunächst sind die Systemvariablen ~JBOSS_HOME~ und ~NOPAUSE~ zu setzen.
 #+BEGIN_SRC powershell
-$env:JBOSS_HOME = "D:\jboss\jboss-eap-7.1"
+$env:JBOSS_HOME = "${jboss_install_dir}\jboss-eap-${jboss_version}"
 [Environment]::SetEnvironmentVariable( "JBOSS_HOME", $env:JBOSS_HOME, [System.EnvironmentVariableTarget]::Machine) 
 
 $env:NOPAUSE = 1
@@ -65,3 +131,7 @@ Der folgende Befehl entfernt den JBoss EAP als Windows-Dienst.
 #+BEGIN_SRC powershell
 D:\jboss\jboss-eap-7.1\bin\service.bat uninstall /name jboss
 #+END_SRC
+
+** Installation eines JDBC-Treibers
+
+** Installation mehrere JBoss EAP 7-Instanzen
