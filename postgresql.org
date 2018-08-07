@@ -16,6 +16,40 @@ apt install postgresql
 #+END_SRC
 
 ** Installation mit Docker
+
+Der folgende Befehl startet einen Docker-Container mit Postgres.
+
+#+BEGIN_SRC sh :results output silent
+docker run --name postgres -e POSTGRES_USER=martin -e POSTGRES_PASSWORD=geheim  -d postgres
+#+END_SRC
+
+
+| Variable               | Wert   | Bedeutung                                                                                                        |
+|------------------------+--------+------------------------------------------------------------------------------------------------------------------|
+| POSTGRES_USER          | martin | This optional environment variable is used in conjunction with POSTGRES_PASSWORD to set a user and its password. |
+| POSTGRES_PASSWORD      | geheim | This environment variable sets the superuser password for PostgreSQL.                                            |
+
+Anschließen läßt sich mit folgendem Befehl ein weiterer  Docker-Container starten, der den ~psql~ (den CLI-Client von Postgres) ausführt und sich mit dem Docker-Container ~postgres~ verbindet.
+
+#+BEGIN_SRC sh :results output silent
+docker run -it --rm --link postgres:postgres postgres psql -h postgres -U martin
+#+END_SRC
+
+
+Optional kann dieser Befehl in einem ~alias~ vermerkt werden.
+
+#+BEGIN_SRC sh :results output silent
+alias psql='docker run -it --rm --link postgres:postgres postgres psql -h postgres'
+#+END_SRC
+
+Damit der ~alias~ daurhaft bestehen bleibt, kann er mit folgendem Befehl der ~.bashrc~ henzugefügt werden.
+
+#+BEGIN_SRC sh :results output silent
+echo "alias psql='docker run -it --rm --link postgres:postgres postgres psql -h postgres'" >> ~/.bashrc
+source ~/.bashrc
+#+END_SRC
+
+
 * Administration
 
 ** Starten und Stoppen von PostgreSQL
@@ -39,6 +73,7 @@ Der Service ~postgresql~ kann mit dem folgenden Befehl gestoppt werden.
 systemctl stop postgresql
 #+END_SRC
 
+*** Starten und Stoppen von PostgreSQL unter Docker
 ** Benutzerverwaltung
 
 *** Anlegen eines Benutzers
