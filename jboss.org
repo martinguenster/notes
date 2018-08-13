@@ -139,6 +139,15 @@ Der folgende Befehl entfernt den JBoss EAP als Windows-Dienst.
 cd D:\jboss\jboss-eap-${jboss_version}\bin
 .\service.bat uninstall /name jboss
 #+END_SRC
+** Windows Firewall
+Mit den folgenden Befehlen können nun Ports in der Firewall für ~management-http~, ~management-https~, ~ajp~, ~http~ und ~https~ freigeschaltet werden.
+#+BEGIN_SRC powershell
+New-NetFirewallRule -DisplayName 'management-http' -Direction Inbound -Action Allow -Protocol TCP -LocalPort 9990
+New-NetFirewallRule -DisplayName 'management-https' -Direction Inbound -Action Allow -Protocol TCP -LocalPort 9993
+New-NetFirewallRule -DisplayName 'ajp' -Direction Inbound -Action Allow -Protocol TCP -LocalPort 8009
+New-NetFirewallRule -DisplayName 'http' -Direction Inbound -Action Allow -Protocol TCP -LocalPort 8080
+New-NetFirewallRule -DisplayName 'https' -Direction Inbound -Action Allow -Protocol TCP -LocalPort 8443
+#+END_SRC
 
 ** Installation eines JDBC-Treibers
 
