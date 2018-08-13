@@ -98,6 +98,11 @@ D:\jboss
 └── jbcs-jsvc-1.0
 #+END_SRC
 
+Liegt das /JBoss Core Services Jsvc Package/ bereits an zentralen Stelle ~D:\software~ im Dateisystem, entpackt der folgende Befehl das Zip nach ~$jboss_install_dir~ und erstellt so die notwendige Verzeichnisstuktur.
+#+BEGIN_SRC powershell
+Expand-Archive "${software}\jbcs-jsvc-1.0*.zip" -DestinationPath "${jboss_install_dir}"
+#+END_SRC
+
 Bevor der Windows-Dienst eingerichtet werden kann, ist ein JBoss EAP-Benutzer einzurichen, der über den Controller den JBoss EAP beenden darf.
 #+BEGIN_SRC powershell
 D:\jboss\jboss-eap-${jboss_version}\bin
