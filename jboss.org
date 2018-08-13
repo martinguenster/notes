@@ -63,7 +63,7 @@ $env:JAVA_HOME = $java_home
 Die /JBoss Enterprise Application Platform 7/ läßt sich z.B. unter Windows betreiben. 
 
 ** Installation des JBoss EAP 7
-Es ist zu bestimmen, welche JBoss EAP-Version installiert werden soll, wo der JBoss EAP installiert werden soll und wo das Zip zu finden ist.
+Es ist zu bestimmen, welche JBoss EAP-Version (~$jboss_version~) installiert werden soll und wo der JBoss EAP installiert werden soll(~$jboss_install_dir~).
 #+BEGIN_SRC powershell
 $jboss_version = "7.1"
 $jboss_install_dir = "D:\jboss"
