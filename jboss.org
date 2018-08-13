@@ -105,13 +105,13 @@ Expand-Archive "${software}\jbcs-jsvc-1.0*.zip" -DestinationPath "${jboss_instal
 
 Bevor der Windows-Dienst eingerichtet werden kann, ist ein JBoss EAP-Benutzer einzurichen, der über den Controller den JBoss EAP beenden darf.
 #+BEGIN_SRC powershell
-D:\jboss\jboss-eap-${jboss_version}\bin
+cd D:\jboss\jboss-eap-${jboss_version}\bin
 .\add-user.bat --user admin --password geheim
 #+END_SRC
 
 Der folgende Befehl richtet den JBoss EAP als Windows-Dienst mit dem Namen ~jboss~ ein.
 #+BEGIN_SRC powershell
-D:\jboss\jboss-eap-${jboss_version}\bin
+cd D:\jboss\jboss-eap-${jboss_version}\bin
 .\service.bat install /name jboss /controller localhost:9990  /jbossuser admin /jbosspass geheim > D:\jboss\jboss-eap-7.1\service.txt
 #+END_SRC
 
@@ -136,7 +136,7 @@ prunsrv.exe install JBoss
 
 Der folgende Befehl entfernt den JBoss EAP als Windows-Dienst.
 #+BEGIN_SRC powershell
-D:\jboss\jboss-eap-${jboss_version}\bin
+cd D:\jboss\jboss-eap-${jboss_version}\bin
 .\service.bat uninstall /name jboss
 #+END_SRC
 
