@@ -14,7 +14,7 @@ $software = "D:\software"
 #+END_SRC
 
 ** Installation von Java 
-Es ist zu bestimmen, welche Java Version installiert werden soll, wo Java installiert werden soll und wo der Installer zu finden ist.
+Es ist zu bestimmen, welche Java Version (~$java_version~, ~$java_os~ und ~$java_platform~) installiert werden soll und wo Java installiert werden soll(~$java_install_dir~).
 #+BEGIN_SRC powershell
 $java_version = "10.0.2"
 $java_os = "windows"
@@ -63,7 +63,7 @@ $env:JAVA_HOME = $java_home
 Die /JBoss Enterprise Application Platform 7/ läßt sich z.B. unter Windows betreiben. 
 
 ** Installation des JBoss EAP 7
-Es ist zu bestimmen, welche JBoss EAP-Version installiert werden soll, wo der JBoss EAP installiert werden soll und wo das Zip zu finden ist.
+Es ist zu bestimmen, welche JBoss EAP-Version (~$jboss_version~) installiert werden soll und wo der JBoss EAP installiert werden soll(~$jboss_install_dir~).
 #+BEGIN_SRC powershell
 $jboss_version = "7.1"
 $jboss_install_dir = "D:\jboss"
@@ -98,14 +98,21 @@ D:\jboss
 └── jbcs-jsvc-1.0
 #+END_SRC
 
+Liegt das /JBoss Core Services Jsvc Package/ bereits an zentralen Stelle ~D:\software~ im Dateisystem, entpackt der folgende Befehl das Zip nach ~$jboss_install_dir~ und erstellt so die notwendige Verzeichnisstuktur.
+#+BEGIN_SRC powershell
+Expand-Archive "${software}\jbcs-jsvc-1.0*.zip" -DestinationPath "${jboss_install_dir}"
+#+END_SRC
+
 Bevor der Windows-Dienst eingerichtet werden kann, ist ein JBoss EAP-Benutzer einzurichen, der über den Controller den JBoss EAP beenden darf.
 #+BEGIN_SRC powershell
-D:\jboss\jboss-eap-7.1\bin\add-user.bat --user admin --password geheim
+cd D:\jboss\jboss-eap-${jboss_version}\bin
+.\add-user.bat --user admin --password geheim
 #+END_SRC
 
 Der folgende Befehl richtet den JBoss EAP als Windows-Dienst mit dem Namen ~jboss~ ein.
 #+BEGIN_SRC powershell
-D:\jboss\jboss-eap-7.1\bin\service.bat install /name jboss /controller localhost:9990  /jbossuser admin /jbosspass geheim > D:\jboss\jboss-eap-7.1\service.txt
+cd D:\jboss\jboss-eap-${jboss_version}\bin
+.\service.bat install /name jboss /controller localhost:9990  /jbossuser admin /jbosspass geheim > D:\jboss\jboss-eap-7.1\service.txt
 #+END_SRC
 
 Das erfolgreiche Einrichten des Windows-Diensts wird mit der Ausgabe der Parameter bestätigt, die an ~prunsrv.exe~ übergebenen wurden.
@@ -129,7 +136,17 @@ prunsrv.exe install JBoss
 
 Der folgende Befehl entfernt den JBoss EAP als Windows-Dienst.
 #+BEGIN_SRC powershell
-D:\jboss\jboss-eap-7.1\bin\service.bat uninstall /name jboss
+cd D:\jboss\jboss-eap-${jboss_version}\bin
+.\service.bat uninstall /name jboss
+#+END_SRC
+** Windows Firewall
+Mit den folgenden Befehlen können nun Ports in der Firewall für ~management-http~, ~management-https~, ~ajp~, ~http~ und ~https~ freigeschaltet werden.
+#+BEGIN_SRC powershell
+New-NetFirewallRule -DisplayName 'management-http' -Direction Inbound -Action Allow -Protocol TCP -LocalPort 9990
+New-NetFirewallRule -DisplayName 'management-https' -Direction Inbound -Action Allow -Protocol TCP -LocalPort 9993
+New-NetFirewallRule -DisplayName 'ajp' -Direction Inbound -Action Allow -Protocol TCP -LocalPort 8009
+New-NetFirewallRule -DisplayName 'http' -Direction Inbound -Action Allow -Protocol TCP -LocalPort 8080
+New-NetFirewallRule -DisplayName 'https' -Direction Inbound -Action Allow -Protocol TCP -LocalPort 8443
 #+END_SRC
 
 ** Installation eines JDBC-Treibers
