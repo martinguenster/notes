@@ -20,7 +20,7 @@ apt install postgresql
 Der folgende Befehl startet einen Docker-Container mit Postgres.
 
 #+BEGIN_SRC sh :results output silent
-docker run --name postgres -e POSTGRES_USER=martin -e POSTGRES_PASSWORD=geheim  -d postgres
+docker run --name postgres -e POSTGRES_USER=martin -e POSTGRES_PASSWORD=geheim  -d mdillon/postgis
 #+END_SRC
 
 
