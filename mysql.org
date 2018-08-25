@@ -195,13 +195,13 @@ ORDER BY
 ** DTL (Data Transaction Language)
 * Installation
 
-** Installation unter Debian
+** Installation unter Windows
+...
+
+** Installation unter Linux (Debian)
 #+BEGIN_SRC sh
 sudo apt install mysql-server
 #+END_SRC
-
-** Installation unter Windows
-...
 
 * Administration
 
