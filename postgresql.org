@@ -49,6 +49,7 @@ echo "alias psql='docker run -it --rm --link postgres:postgres postgres psql -h 
 source ~/.bashrc
 #+END_SRC
 
+Der Befehl ~psql -Umartin~ baut nun eine Verbindung mit der Datenbank auf.
 
 * Administration
 
