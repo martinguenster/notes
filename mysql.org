@@ -227,12 +227,32 @@ SHOW GRANTS FOR 'root'@'localhost';
 ** Character Set und Collation
 
 *** Konfigurierte Character Sets
-Die konfigurierten Character Sets lassen sich mit dem folgendnen befehlanzeigen.
+
+Die konfigurierten Character Sets lassen sich mit dem folgendnen Befehl anzeigen.
 
 #+BEGIN_SRC sql
 SHOW GLOBAL VARIABLES LIKE 'character_set\_%';
 #+END_SRC
+
 Außer bei ~character_set_filesystem~ und ~character_set_system~ sollte hier alles auf ~utf8mb4~ stehen.
+
+*** ~DEFAULT_CHARACTER_SET_NAME~ und ~DEFAULT_COLLATION_NAME~ für Datenbanken anzeigen
+
+Der ~DEFAULT_CHARACTER_SET_NAME~ und der ~DEFAULT_COLLATION_NAME~ für Datenbanken lassen sich mit dem folgendnen Befehl anzeigen.
+
+#+BEGIN_SRC sql
+SELECT
+	schema_name,
+	default_character_set_name,
+	DEFAULT_COLLATION_NAME
+FROM
+	information_schema.SCHEMATA
+ORDER BY
+	schema_name;
+#+END_SRC
+
+Hier sollte für eigene Datenbanken ~default_character_set_name~ auf ~utf8mb4~ und ~default_collation_name~ auf ~utf8mb4_0900_ai_ci~ stehen.
+
 
 *** Character Set und Collation anzeigen (für eine Datenbank)
 #+BEGIN_SRC sql
