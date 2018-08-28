@@ -272,6 +272,24 @@ AND T.table_schema = 'db_name';
 
 Hier sollte für die  ~character_set_name~ auf ~utf8mb4~ und der ~collation_name~ auf ~utf8mb4_0900_ai_ci~ stehen.
 
+*** ~character_set_name~ und ~COLLATION_NAME~ für Spalten anzeigen lassen
+
+...
+
+#+BEGIN_SRC sql
+SELECT
+	TABLE_SCHEMA,
+	TABLE_NAME,
+	character_set_name,
+	COLLATION_NAME
+FROM
+	information_schema.`COLUMNS`
+WHERE
+	table_schema = "db_name";
+#+END_SRC
+
+...
+
 ** Server SQL Modes
 ...
 * Anwendung
