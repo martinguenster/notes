@@ -280,6 +280,7 @@ Hier sollte für die  ~character_set_name~ auf ~utf8mb4~ und der ~collation_name
 SELECT
 	TABLE_SCHEMA,
 	TABLE_NAME,
+	COLUMN_NAME,
 	character_set_name,
 	COLLATION_NAME
 FROM
