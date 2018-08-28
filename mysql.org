@@ -224,7 +224,9 @@ SHOW GRANTS;
 SHOW GRANTS FOR 'root'@'localhost';
 #+END_SRC
 
-** Konfigurierte Character Sets
+** Character Set und Collation
+
+*** Konfigurierte Character Sets
 Die konfigurierten Character Sets lassen sich mit dem folgendnen befehlanzeigen.
 
 #+BEGIN_SRC sql
