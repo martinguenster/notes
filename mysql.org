@@ -224,11 +224,13 @@ SHOW GRANTS;
 SHOW GRANTS FOR 'root'@'localhost';
 #+END_SRC
 
-** Character Sets und Collations
-*** Character Set und Collation anzeigen (global)
+** Konfigurierte Character Sets
+Die konfigurierten Character Sets lassen sich mit dem folgendnen befehlanzeigen.
+
 #+BEGIN_SRC sql
-SELECT @@character_set_database, @@collation_database;
+SHOW GLOBAL VARIABLES LIKE 'character_set\_%';
 #+END_SRC
+Außer bei ~character_set_filesystem~ und ~character_set_system~ sollte hier alles auf ~utf8mb4~ stehen.
 
 *** Character Set und Collation anzeigen (für eine Datenbank)
 #+BEGIN_SRC sql
