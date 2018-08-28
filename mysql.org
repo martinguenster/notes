@@ -251,14 +251,26 @@ ORDER BY
 	schema_name;
 #+END_SRC
 
-Hier sollte für eigene Datenbanken ~default_character_set_name~ auf ~utf8mb4~ und ~default_collation_name~ auf ~utf8mb4_0900_ai_ci~ stehen.
+Hier sollte für eigene Datenbanken ~default_character_set_name~ auf ~utf8mb4~ und der ~default_collation_name~ auf ~utf8mb4_0900_ai_ci~ stehen.
 
 
-*** Character Set und Collation anzeigen (für eine Datenbank)
+*** ~DEFAULT_CHARACTER_SET~ und ~DEFAULT_COLLATION~ für Spalten anzeigen
+
+Das ~DEFAULT_CHARACTER_SET~ und die ~DEFAULT_COLLATION~, die letztlich angebewendet wurden, lassen sich mit dem folgendnen Befehl anzeigen.
+
 #+BEGIN_SRC sql
-SELECT DEFAULT_CHARACTER_SET_NAME, DEFAULT_COLLATION_NAME
-FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'db_name';
+SELECT
+	T.table_schema,
+	lower(t.TABLE_NAME),
+	CCSA.character_set_name,
+	CCSA.COLLATION_NAME
+FROM
+	information_schema.`TABLES` T
+INNER JOIN information_schema.`COLLATION_CHARACTER_SET_APPLICABILITY` CCSA ON CCSA.collation_name = T.table_collation
+AND T.table_schema = 'db_name';
 #+END_SRC
+
+Hier sollte für eigene Datenbanken ~DEFAULT_CHARACTER_SET~ auf ~utf8mb4~ und der ~DEFAULT_COLLATION~ auf ~utf8mb4_0900_ai_ci~ stehen.
 
 ** Server SQL Modes
 ...
