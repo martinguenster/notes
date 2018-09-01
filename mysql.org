@@ -224,17 +224,72 @@ SHOW GRANTS;
 SHOW GRANTS FOR 'root'@'localhost';
 #+END_SRC
 
-** Character Sets und Collations
-*** Character Set und Collation anzeigen (global)
+** Character Set und Collation
+
+*** Konfigurierte Character Sets
+
+Die konfigurierten Character Sets lassen sich mit dem folgendnen Befehl anzeigen.
+
 #+BEGIN_SRC sql
-SELECT @@character_set_database, @@collation_database;
+SHOW GLOBAL VARIABLES LIKE 'character_set\_%';
 #+END_SRC
 
-*** Character Set und Collation anzeigen (für eine Datenbank)
+Außer bei ~character_set_filesystem~ und ~character_set_system~ sollte hier alles auf ~utf8mb4~ stehen.
+
+*** ~DEFAULT_CHARACTER_SET_NAME~ und ~DEFAULT_COLLATION_NAME~ für Datenbanken anzeigen
+
+Der ~DEFAULT_CHARACTER_SET_NAME~ und der ~DEFAULT_COLLATION_NAME~ für Datenbanken lassen sich mit dem folgendnen Befehl anzeigen.
+
 #+BEGIN_SRC sql
-SELECT DEFAULT_CHARACTER_SET_NAME, DEFAULT_COLLATION_NAME
-FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'db_name';
+SELECT
+	schema_name,
+	default_character_set_name,
+	DEFAULT_COLLATION_NAME
+FROM
+	information_schema.SCHEMATA
+ORDER BY
+	schema_name;
 #+END_SRC
+
+Hier sollte für eigene Datenbanken ~default_character_set_name~ auf ~utf8mb4~ und der ~default_collation_name~ auf ~utf8mb4_0900_ai_ci~ stehen.
+
+
+*** ~character_set_name~ und ~collation_name~ für Tabellen anzeigen
+
+Der ~character_set_name~ und der ~collation_name~ der Tabellen lassen sich mit dem folgendnen Befehl anzeigen.
+
+#+BEGIN_SRC sql
+SELECT
+	T.table_schema,
+	lower(t.TABLE_NAME),
+	CCSA.character_set_name,
+	CCSA.collation_name
+FROM
+	information_schema.`TABLES` T
+INNER JOIN information_schema.`COLLATION_CHARACTER_SET_APPLICABILITY` CCSA ON CCSA.collation_name = T.table_collation
+AND T.table_schema = 'db_name';
+#+END_SRC
+
+Hier sollte für die  ~character_set_name~ auf ~utf8mb4~ und der ~collation_name~ auf ~utf8mb4_0900_ai_ci~ stehen.
+
+*** ~character_set_name~ und ~COLLATION_NAME~ für Spalten anzeigen lassen
+
+...
+
+#+BEGIN_SRC sql
+SELECT
+	TABLE_SCHEMA,
+	TABLE_NAME,
+	COLUMN_NAME,
+	character_set_name,
+	COLLATION_NAME
+FROM
+	information_schema.`COLUMNS`
+WHERE
+	table_schema = "db_name";
+#+END_SRC
+
+...
 
 ** Server SQL Modes
 ...
