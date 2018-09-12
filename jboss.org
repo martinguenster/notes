@@ -150,5 +150,6 @@ New-NetFirewallRule -DisplayName 'https' -Direction Inbound -Action Allow -Proto
 #+END_SRC
 
 ** Installation eines JDBC-Treibers
+[[https://dev.mysql.com/downloads/connector/j/][MySQL Connector/J]]
 
 ** Installation mehrere JBoss EAP 7-Instanzen
