@@ -112,7 +112,7 @@ cd D:\jboss\jboss-eap-${jboss_version}\bin
 Der folgende Befehl richtet den JBoss EAP als Windows-Dienst mit dem Namen ~jboss~ ein.
 #+BEGIN_SRC powershell
 cd D:\jboss\jboss-eap-${jboss_version}\bin
-.\service.bat install /name jboss /controller localhost:9990  /jbossuser admin /jbosspass geheim > D:\jboss\jboss-eap-7.1\service.txt
+.\service.bat install /name jboss /controller localhost:9990  /jbossuser admin /jbosspass geheim >  D:\jboss\jboss-eap-${jboss_version}\service.txt
 #+END_SRC
 
 Das erfolgreiche Einrichten des Windows-Diensts wird mit der Ausgabe der Parameter bestätigt, die an ~prunsrv.exe~ übergebenen wurden.
