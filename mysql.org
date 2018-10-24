@@ -5,6 +5,20 @@
 ...
 
 ** Installation unter Linux (Debian)
+
+Das Repository hinzufügen.
+
+#+BEGIN_SRC sh
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.10-1_all.deb
+sudo dpkg -i mysql-apt-config_0.8.10-1_all.deb
+#+END_SRC
+
+Das Repository abrufen.
+
+#+BEGIN_SRC sh
+sudo apt update
+#+END_SRC
+
 #+BEGIN_SRC sh
 sudo apt install mysql-server
 #+END_SRC
