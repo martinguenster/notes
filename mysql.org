@@ -24,17 +24,31 @@ sudo apt install mysql-server
 #+END_SRC
 
 * Administration
-
+  :PROPERTIES:
+  :engine:   mysql
+  :dbhost:   localhost
+  :database: mysql
+  :dbuser:   root
+  :dbpassword: geheim
+  :exports:  both
+  :END:
 ** Benutzer und Rechte
 *** Benutzer user@localhost mit dem Passwort password anlegen
 #+BEGIN_SRC sql
 CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
 #+END_SRC
 
+#+RESULTS:
+
 *** Aktuellen Benutzer anzeigen
 #+BEGIN_SRC sql
 SELECT USER();
 #+END_SRC
+
+#+RESULTS:
+| USER()         |
+|----------------|
+| root@localhost |
 
 *** Rechte eines Benutzers anzeigen
 #+BEGIN_SRC sql
