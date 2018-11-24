@@ -64,6 +64,9 @@ mkswap -L SWAP /dev/sdb2
 mkfs.btrfs -f -L ROOT /dev/sdb3
 #+END_SRC
 
+#+BEGIN_SRC 
+lsblk -o name,label,fstype,size /dev/sdb
+#+END_SRC
 ** Subvolumes erstellen
 
 #+BEGIN_SRC sh
