@@ -70,7 +70,7 @@ lsblk -o name,label,fstype,size /dev/sdb
 ** Subvolumes erstellen
 
 #+BEGIN_SRC sh
-mount /dev/sda3 /mnt
+mount /dev/sdb3 /mnt
 
 cd /mnt
 
@@ -81,16 +81,16 @@ btrfs sub create @root
 btrfs sub create @opt
 btrfs sub create @srv
 btrfs sub create @tmp
-btrfs sub create @usr/local
+btrfs sub create @usr_local
 btrfs sub create @var
 
 cd
 
-umount /dev/sda3
+umount /dev/sdb3
 #+END_SRC
 
 #+BEGIN_SRC 
-mount -o noatime,compress=lzo,space_cache,ssd,subvol=@ /dev/sda1 /mnt
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@ /dev/sdb3 /mnt
 
 mkdir -p /mnt/boot \
          /mnt/.snapshots \
@@ -104,14 +104,14 @@ mkdir -p /mnt/boot \
          /mnt/btrfs
 
 mount -o noatime,compress=lzo,space_cache,ssd,subvol=@snapshots /dev/sda1 /mnt/.snapshots
-mount -o noatime,compress=lzo,space_cache,ssd,subvol=@home      /dev/sda1 /mnt/home
-mount -o noatime,compress=lzo,space_cache,ssd,subvol=@root      /dev/sda1 /mnt/root
-mount -o noatime,compress=lzo,space_cache,ssd,subvol=@opt       /dev/sda1 /mnt/opt
-mount -o noatime,compress=lzo,space_cache,ssd,subvol=@srv       /dev/sda1 /mnt/srv
-mount -o noatime,compress=lzo,space_cache,ssd,subvol=@tmp       /dev/sda1 /mnt/tmp
-mount -o noatime,compress=lzo,space_cache,ssd,subvol=@usr/local /dev/sda1 /mnt/usr/local
-mount -o noatime,compress=lzo,space_cache,ssd,subvol=@var       /dev/sda1 /mnt/var
-mount -o noatime,compress=lzo,space_cache,ssd,subvol=5          /dev/sda1 /mnt/btrfs
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@home      /dev/sdb3 /mnt/home
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@root      /dev/sdb3 /mnt/root
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@opt       /dev/sdb3 /mnt/opt
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@srv       /dev/sdb3 /mnt/srv
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@tmp       /dev/sdb3 /mnt/tmp
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@usr/local /dev/sdb3 /mnt/usr/local
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@var       /dev/sdb3 /mnt/var
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=5          /dev/sdb3 /mnt/btrfs
 #+END_SRC
 
 
