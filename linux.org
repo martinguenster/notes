@@ -53,15 +53,15 @@ sgdisk -n=1:+0:+1G   -c=1:"boot" -t=1:ef00 \
 ** Formatieren
 
 #+BEGIN_SRC sh
-mkfs.vfat -F 32 -n EFI /dev/sda1
+mkfs.vfat -F 32 -n EFI /dev/sdb1
 #+END_SRC
 
 #+BEGIN_SRC sh
-mkswap -L SWAP /dev/sda2
+mkswap -L SWAP /dev/sdb2
 #+END_SRC
 
 #+BEGIN_SRC sh
-mkfs.btrfs -f -L ROOT /dev/sda3
+mkfs.btrfs -f -L ROOT /dev/sdb3
 #+END_SRC
 
 ** Subvolumes erstellen
