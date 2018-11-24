@@ -1,4 +1,135 @@
 #+TITLE: Linux
+* Dateisystem
+** Dateisystem Hierarchie
+Die Hierarchie des Dateisystems ist unter Linux durch den [[http://refspecs.linuxfoundation.org/fhs.shtml][Filesystem Hierarchy Standard]] beschrieben und auch [[https://archlinux.org][Arch Linux]] folgt diesem Standard.
+
+|-------+---------------------------------------------------+
+| bin   | Essential command binaries                        |
+| boot  | Static files of the boot loader                   |
+| dev   | Device files                                      |
+| etc   | Host-specific system configuration                |
+| lib   | Essential shared libraries and kernel modules     |
+| media | Mount point for removable media                   |
+| mnt   | Mount point for mounting a filesystem temporarily |
+| opt   | Add-on application software packages              |
+| run   | Data relevant to running processes                |
+| sbin  | Essential system binaries                         |
+| srv   | Data for services provided by this system         |
+| tmp   | Temporary files                                   |
+| usr   | Secondary hierarchy                               |
+| var   | Variable data                                     |
+
+
+** BTRFS
+
+| Path       | Partition | Filesystem | Subvolume  | Options |
+|------------+-----------+------------+------------+---------|
+| /boot      | sda1      | fat32      |            |         |
+| /          | sda2      | btrfs      | @          |         |
+| /home      | sda2      | btrfs      | @home      |         |
+| /root      | sda2      | btrfs      | @root      |         |
+| /opt       | sda2      | btrfs      | @opt       |         |
+| /srv       | sda2      | btrfs      | @srv       |         |
+| /tmp       | sda2      | btrfs      | @tmp       |         |
+| /usr/local | sda2      | btrfs      | @usr/local |         |
+| /var       | sda2      | btrfs      | @var       |         |
+
+
+* Installation
+
+** Partitioniren
+
+#+BEGIN_SRC 
+sgdisk -o -g /dev/sda
+#+END_SRC
+
+#+BEGIN_SRC sh
+sgdisk -n=1:+0:+1G   -c=1:"boot" -t=1:ef00 \
+       -n=2:+1G:+16G -c=2:"swap" -t=2:8200\
+       -N=3          -c=3:"root" -t=3:8300
+#+END_SRC
+
+** Formatieren
+
+#+BEGIN_SRC sh
+mkfs.vfat -F 32 -n EFI /dev/sda1
+#+END_SRC
+
+#+BEGIN_SRC sh
+mkswap -L SWAP /dev/sda2
+#+END_SRC
+
+#+BEGIN_SRC sh
+mkfs.btrfs -f -L ROOT /dev/sda3
+#+END_SRC
+
+** Subvolumes erstellen
+
+#+BEGIN_SRC sh
+mount /dev/sda3 /mnt
+
+cd /mnt
+
+btrfs sub create @
+btrfs sub create @snapshots
+btrfs sub create @home
+btrfs sub create @root
+btrfs sub create @opt
+btrfs sub create @srv
+btrfs sub create @tmp
+btrfs sub create @usr/local
+btrfs sub create @var
+
+cd
+
+umount /dev/sda3
+#+END_SRC
+
+#+BEGIN_SRC 
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@ /dev/sda1 /mnt
+
+mkdir -p /mnt/boot \
+         /mnt/.snapshots \
+         /mnt/home \
+         /mnt/root \
+         /mnt/opt \
+         /mnt/srv \
+         /mnt/tmp \
+         /mnt/usr/local
+         /mnt/var
+         /mnt/btrfs
+
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@snapshots /dev/sda1 /mnt/.snapshots
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@home      /dev/sda1 /mnt/home
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@root      /dev/sda1 /mnt/root
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@opt       /dev/sda1 /mnt/opt
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@srv       /dev/sda1 /mnt/srv
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@tmp       /dev/sda1 /mnt/tmp
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@usr/local /dev/sda1 /mnt/usr/local
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@var       /dev/sda1 /mnt/var
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=5          /dev/sda1 /mnt/btrfs
+#+END_SRC
+
+
+#+BEGIN_SRC sh
+df -Th
+#+END_SRC
+
+
+???
+#+BEGIN_SRC sg
+pacstrap /mnt base base-devel btrfs-progs dosfstools bash-completion wpa-supplicat wpa-suplicant
+#+END_SRC
+
+#+BEGIN_SRC sh
+genfstab -Lp /mnt >> /mnt/etc/fstab
+#+END_SRC
+
+#+BEGIN_SRC sh
+arch-chroot /mnt
+echo x220 > /etc/hostname
+.
+#+END_SRC
 * Desktop
 ** Login- und Windowmanager
 #+BEGIN_SRC sh :dir /sudo:: :results output silent
