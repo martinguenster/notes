@@ -45,8 +45,9 @@ sgdisk -o -g /dev/sda
 
 #+BEGIN_SRC sh
 sgdisk -n=1:+0:+1G   -c=1:"boot" -t=1:ef00 \
-       -n=2:+1G:+16G -c=2:"swap" -t=2:8200\
-       -N=3          -c=3:"root" -t=3:8300
+       -n=2:+1G:+16G -c=2:"swap" -t=2:8200 \
+       -N=3          -c=3:"root" -t=3:8300 \
+       /dev/sdb
 #+END_SRC
 
 ** Formatieren
