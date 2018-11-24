@@ -109,7 +109,7 @@ mount -o noatime,compress=lzo,space_cache,ssd,subvol=@root      /dev/sdb3 /mnt/r
 mount -o noatime,compress=lzo,space_cache,ssd,subvol=@opt       /dev/sdb3 /mnt/opt
 mount -o noatime,compress=lzo,space_cache,ssd,subvol=@srv       /dev/sdb3 /mnt/srv
 mount -o noatime,compress=lzo,space_cache,ssd,subvol=@tmp       /dev/sdb3 /mnt/tmp
-mount -o noatime,compress=lzo,space_cache,ssd,subvol=@usr/local /dev/sdb3 /mnt/usr/local
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@usr_local /dev/sdb3 /mnt/usr/local
 mount -o noatime,compress=lzo,space_cache,ssd,subvol=@var       /dev/sdb3 /mnt/var
 mount -o noatime,compress=lzo,space_cache,ssd,subvol=5          /dev/sdb3 /mnt/btrfs
 #+END_SRC
