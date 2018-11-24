@@ -103,6 +103,8 @@ mkdir -p /mnt/boot \
          /mnt/var
          /mnt/btrfs
 
+mount /dev/sda1 /mnt/boot
+
 mount -o noatime,compress=lzo,space_cache,ssd,subvol=@snapshots /dev/sdb3 /mnt/.snapshots
 mount -o noatime,compress=lzo,space_cache,ssd,subvol=@home      /dev/sdb3 /mnt/home
 mount -o noatime,compress=lzo,space_cache,ssd,subvol=@root      /dev/sdb3 /mnt/root
@@ -122,7 +124,7 @@ df -Th
 
 ???
 #+BEGIN_SRC sg
-pacstrap /mnt base base-devel btrfs-progs dosfstools bash-completion wpa-supplicat wpa-suplicant
+pacstrap /mnt base base-devel btrfs-progs dosfstools bash-completion wpa-supplicant dialog
 #+END_SRC
 
 #+BEGIN_SRC sh
