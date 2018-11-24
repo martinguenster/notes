@@ -103,7 +103,7 @@ mkdir -p /mnt/boot \
          /mnt/var
          /mnt/btrfs
 
-mount -o noatime,compress=lzo,space_cache,ssd,subvol=@snapshots /dev/sda1 /mnt/.snapshots
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@snapshots /dev/sdb3 /mnt/.snapshots
 mount -o noatime,compress=lzo,space_cache,ssd,subvol=@home      /dev/sdb3 /mnt/home
 mount -o noatime,compress=lzo,space_cache,ssd,subvol=@root      /dev/sdb3 /mnt/root
 mount -o noatime,compress=lzo,space_cache,ssd,subvol=@opt       /dev/sdb3 /mnt/opt
