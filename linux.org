@@ -99,11 +99,11 @@ mkdir -p /mnt/boot \
          /mnt/opt \
          /mnt/srv \
          /mnt/tmp \
-         /mnt/usr/local
-         /mnt/var
+         /mnt/usr/local \
+         /mnt/var \
          /mnt/btrfs
 
-mount /dev/sda1 /mnt/boot
+mount /dev/sdb1 /mnt/boot
 
 mount -o noatime,compress=lzo,space_cache,ssd,subvol=@snapshots /dev/sdb3 /mnt/.snapshots
 mount -o noatime,compress=lzo,space_cache,ssd,subvol=@home      /dev/sdb3 /mnt/home
@@ -113,7 +113,7 @@ mount -o noatime,compress=lzo,space_cache,ssd,subvol=@srv       /dev/sdb3 /mnt/s
 mount -o noatime,compress=lzo,space_cache,ssd,subvol=@tmp       /dev/sdb3 /mnt/tmp
 mount -o noatime,compress=lzo,space_cache,ssd,subvol=@usr_local /dev/sdb3 /mnt/usr/local
 mount -o noatime,compress=lzo,space_cache,ssd,subvol=@var       /dev/sdb3 /mnt/var
-mount -o noatime,compress=lzo,space_cache,ssd,subvol=5          /dev/sdb3 /mnt/btrfs
+mount -o noatime,compress=lzo,space_cache,ssd,subvolid=5          /dev/sdb3 /mnt/btrfs
 #+END_SRC
 
 
