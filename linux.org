@@ -121,10 +121,9 @@ mount -o noatime,compress=lzo,space_cache,ssd,subvol=5          /dev/sdb3 /mnt/b
 df -Th
 #+END_SRC
 
-
-???
+** Grundsystem installieren
 #+BEGIN_SRC sg
-pacstrap /mnt base base-devel btrfs-progs dosfstools bash-completion wpa-supplicant dialog
+pacstrap /mnt base base-devel btrfs-progs dosfstools bash-completion mg git
 #+END_SRC
 
 #+BEGIN_SRC sh
@@ -134,7 +133,43 @@ genfstab -Lp /mnt >> /mnt/etc/fstab
 #+BEGIN_SRC sh
 arch-chroot /mnt
 echo x220 > /etc/hostname
-.
+echo LANG=de_DE.UTF-8 > /etc/locale.conf
+nano /etc/locale.gen ...
+locale-gen
+echo KEYMAP=de-latin1 > /etc/vconsole.conf
+echo FONT=lat9w-16 >> /etc/vconsole.conf
+ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+mkinitcpio -p linux
+#+END_SRC
+
+*** Zeit einstellen
+#+BEGIN_SRC 
+systemctl enable systemd-timesyncd.service
+systemctl start systemd-timesyncd.service
+hwclock -w
+#+END_SRC
+
+** Desktop installlieren
+#+BEGIN_SRC 
+pacman -Syu
+pacman -S \
+acpid \
+dbus \
+xorg-server \
+xorg-xinit \
+xf86-video-intel \
+xfce4 \
+xfce4-goodies \
+ttf-dejavu \
+lightdm \
+lightdm-gtk-greeter \
+networkmanager \
+network-manager-applet \
+nm-connection-editor
+#+END_SRC
+
+#+BEGIN_SRC sh
+systemctl enable.service acpid.service lightdm.service
 #+END_SRC
 * Desktop
 ** Login- und Windowmanager
