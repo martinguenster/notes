@@ -40,7 +40,7 @@ Die Hierarchie des Dateisystems ist unter Linux durch den [[http://refspecs.linu
 ** Partitioniren
 
 #+BEGIN_SRC 
-sgdisk -o -g /dev/sda
+sgdisk -o -g /dev/sdb
 #+END_SRC
 
 #+BEGIN_SRC sh
