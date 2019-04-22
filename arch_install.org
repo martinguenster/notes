@@ -44,22 +44,22 @@ sgdisk -n=1:+0:+1G   -c=1:"boot" -t=1:ef00 \
        "/dev/$dev"
 #+END_SRC
 
-** EFI-Partiotion formatieren 
+** EFI-Partition formatieren 
 
 #+BEGIN_SRC sh
-mkfs.vfat -F 32 -n EFI /dev/sdb1
+mkfs.vfat -F 32 -n EFI "/dev/${dev}1"
 #+END_SRC
 
-** SWAP-Partiotion formatieren 
+** SWAP-Partition formatieren 
 
 #+BEGIN_SRC sh
-mkswap -L SWAP /dev/sdb2
+mkswap -L SWAP "/dev/${dev}2"
 #+END_SRC
 
-** BTRFS-Partiotion formatieren 
+** BTRFS-Partition formatieren 
 
 #+BEGIN_SRC sh
-mkfs.btrfs -f -L ROOT /dev/sdb3
+mkfs.btrfs -f -L ROOT "/dev/${dev}3"
 #+END_SRC
 
 ** BTRFS-Subvolumes erstellen
