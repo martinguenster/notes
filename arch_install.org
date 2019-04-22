@@ -83,3 +83,63 @@ cd
 
 umount "/dev/${dev}3"
 #+END_SRC
+
+* Gundsystem installieren
+
+** Partionen mounten
+#+BEGIN_SRC sh
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@ "/dev/${dev}3" /mnt
+
+mkdir -p /mnt/boot/efi \
+         /mnt/.snapshots \
+         /mnt/home \
+         /mnt/root \
+         /mnt/opt \
+         /mnt/srv \
+         /mnt/tmp \
+         /mnt/usr/local \
+         /mnt/var \
+         /mnt/btrfs
+
+mount "/dev/${dev}1" /mnt/boot/efi
+
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@snapshots "/dev/${dev}3" /mnt/.snapshots
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@home      "/dev/${dev}3" /mnt/home
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@root      "/dev/${dev}3" /mnt/root
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@opt       "/dev/${dev}3" /mnt/opt
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@srv       "/dev/${dev}3" /mnt/srv
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@tmp       "/dev/${dev}3" /mnt/tmp
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@usr_local "/dev/${dev}3" /mnt/usr/local
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@var       "/dev/${dev}3" /mnt/var
+mount -o noatime,compress=lzo,space_cache,ssd,subvolid=5        "/dev/${dev}3" /mnt/btrfs
+
+df -Th
+#+END_SRC
+
+** Bootloader installieren
+#+BEGIN_SRC sh
+grub-install \
+--target=x86_64-efi \
+--root-directory=/mnt \
+--efi-directory=/mnt/boot/efi \
+--bootloader-id=GRUB
+#+END_SRC
+
+** Bootstaping 
+#+BEGIN_SRC sh
+pacstrap /mnt \
+base \
+base-devel \
+btrfs-progs \
+dosfstools \
+bash-completion \
+grub \
+efibootmgr
+#+END_SRC
+
+** /fstab/ erstellen
+#+BEGIN_SRC sh
+genfstab -Lp /mnt >> /mnt/etc/fstab
+#+END_SRC
+
+
