@@ -21,8 +21,9 @@ swap_ratio=1.5
 #+END_SRC
 
 
+* Erstellen und formatiren der Partitionen
 
-* Partitionierung der Festplate
+** Erstellen der Partitionen
 
 #+BEGIN_SRC sh :tangle yes
 swap_size=$(awk -v \
@@ -36,4 +37,44 @@ sgdisk -n=1:+0:+1G   -c=1:"boot" -t=1:ef00 \
        -n=2:+1G:+"$swap_size" -c=2:"swap" -t=2:8200 \
        -N=3          -c=3:"root" -t=3:8300 \
        /dev/sdb
+#+END_SRC
+
+** EFI-Partiotion formatieren 
+
+#+BEGIN_SRC sh
+mkfs.vfat -F 32 -n EFI /dev/sdb1
+#+END_SRC
+
+** SWAP-Partiotion formatieren 
+
+#+BEGIN_SRC sh
+mkswap -L SWAP /dev/sdb2
+#+END_SRC
+
+** BTRFS-Partiotion formatieren 
+
+#+BEGIN_SRC sh
+mkfs.btrfs -f -L ROOT /dev/sdb3
+#+END_SRC
+
+** BTRFS-Subvolumes erstellen
+
+#+BEGIN_SRC sh
+mount /dev/sda3 /mnt
+
+cd /mnt
+
+btrfs sub create @
+btrfs sub create @snapshots
+btrfs sub create @home
+btrfs sub create @root
+btrfs sub create @opt
+btrfs sub create @srv
+btrfs sub create @tmp
+btrfs sub create @usr_local
+btrfs sub create @var
+
+cd
+
+umount /dev/sda3
 #+END_SRC
