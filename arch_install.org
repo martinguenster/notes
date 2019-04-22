@@ -65,7 +65,7 @@ mkfs.btrfs -f -L ROOT "/dev/${dev}3"
 ** BTRFS-Subvolumes erstellen
 
 #+BEGIN_SRC sh
-mount /dev/sda3 /mnt
+mount "/dev/${dev}3" /mnt
 
 cd /mnt
 
@@ -81,5 +81,5 @@ btrfs sub create @var
 
 cd
 
-umount /dev/sda3
+umount "/dev/${dev}3"
 #+END_SRC
