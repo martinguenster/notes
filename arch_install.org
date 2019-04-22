@@ -1,0 +1,39 @@
+#+TITLE: Arch Linux-Installation
+* Konfiguration
+
+** Hostname
+
+#+BEGIN_SRC sh :tangle yes
+hostname=x220
+#+END_SRC
+
+** Laufwerk für Installation festlegen
+
+#+BEGIN_SRC sh :tangle yes
+dev=sda
+#+END_SRC
+
+
+** Größe des SWAP-Speichers
+
+#+BEGIN_SRC sh :tangle yes
+swap_ratio=1.5
+#+END_SRC
+
+
+
+* Partitionierung der Festplate
+
+#+BEGIN_SRC sh :tangle yes
+swap_size=$(awk -v \
+            m="$swap_ratio"  \
+            '/MemTotal/ {print m * $2}' \
+            /proc/meminfo)
+
+echo "Swap: $swap_size"
+
+sgdisk -n=1:+0:+1G   -c=1:"boot" -t=1:ef00 \
+       -n=2:+1G:+"$swap_size" -c=2:"swap" -t=2:8200 \
+       -N=3          -c=3:"root" -t=3:8300 \
+       /dev/sdb
+#+END_SRC
