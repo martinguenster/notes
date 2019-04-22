@@ -200,3 +200,82 @@ apt --assume-yes install slim i3
 #+BEGIN_SRC sh :dir /sudo:: :results output silent
 apt --assume-yes install stow
 #+END_SRC
+
+* Grub-Version
+#+BEGIN_SRC sh
+lsblk
+
+sgdisk -o -g /dev/sda
+
+sgdisk -n=1:+0:+1G   -c=1:"efi" -t=1:ef00 \
+       -n=2:+1G:+16G -c=2:"swap" -t=2:8200 \
+       -N=3          -c=3:"root" -t=3:8300 \
+       /dev/sda
+
+lsblk -o name,label,fstype,size /dev/sda
+
+mkfs.vfat -F 32 -n EFI /dev/sda1
+mkswap -L SWAP /dev/sda2
+mkfs.btrfs -f -L ROOT /dev/sda3
+
+lsblk -o name,label,fstype,size /dev/sda
+
+mount /dev/sda3 /mnt
+
+cd /mnt
+
+btrfs sub create @
+btrfs sub create @snapshots
+btrfs sub create @home
+btrfs sub create @root
+btrfs sub create @opt
+btrfs sub create @srv
+btrfs sub create @tmp
+btrfs sub create @usr_local
+btrfs sub create @var
+
+cd
+
+umount /dev/sda3
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@ /dev/sda3 /mnt
+
+mkdir -p /mnt/boot/efi \
+         /mnt/.snapshots \
+         /mnt/home \
+         /mnt/root \
+         /mnt/opt \
+         /mnt/srv \
+         /mnt/tmp \
+         /mnt/usr/local \
+         /mnt/var \
+         /mnt/btrfs
+
+mount /dev/sda1 /mnt/boot/efi
+
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@snapshots /dev/sda3 /mnt/.snapshots
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@home      /dev/sda3 /mnt/home
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@root      /dev/sda3 /mnt/root
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@opt       /dev/sda3 /mnt/opt
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@srv       /dev/sda3 /mnt/srv
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@tmp       /dev/sda3 /mnt/tmp
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@usr_local /dev/sda3 /mnt/usr/local
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@var       /dev/sda3 /mnt/var
+mount -o noatime,compress=lzo,space_cache,ssd,subvolid=5          /dev/sda3 /mnt/btrfs
+df -Th
+
+grub-install --target=x86_64-efi --root-directory=/mnt --efi-directory=/mnt/boot/efi --bootloader-id=GRUB
+
+pacstrap /mnt base base-devel btrfs-progs dosfstools bash-completion mg git grub efibootmgr
+
+genfstab -Lp /mnt >> /mnt/etc/fstab
+
+arch-chroot /mnt
+echo x220 > /etc/hostname
+echo LANG=de_DE.UTF-8 > /etc/locale.conf
+nano /etc/locale.gen ...
+locale-gen
+echo KEYMAP=de-latin1 > /etc/vconsole.conf
+echo FONT=lat9w-16 >> /etc/vconsole.conf
+ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+mkinitcpio -p linux
+#+END_SRC
