@@ -142,4 +142,42 @@ efibootmgr
 genfstab -Lp /mnt >> /mnt/etc/fstab
 #+END_SRC
 
+* System konfigurieren (chroot)
 
+** Hostename konfigurieren
+
+#+BEGIN_SRC sh
+echo $hostname > /etc/hostname
+#+END_SRC
+
+** /locale.conf/ konfigurieren
+
+#+BEGIN_SRC sh
+echo LANG=de_DE.UTF-8 > /etc/locale.conf
+#+END_SRC
+
+** /locale.gen/ konfigurieren
+
+#+BEGIN_SRC sh
+nano /etc/locale.gen ...
+locale-gen
+#+END_SRC
+
+** /KEYMAP/ und /FONT/ konfigurieren
+
+#+BEGIN_SRC sh
+echo KEYMAP=de-latin1 > /etc/vconsole.conf
+echo FONT=lat9w-16 >> /etc/vconsole.conf
+#+END_SRC
+
+** Zeitzone konfigurieren
+
+#+BEGIN_SRC sh
+ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+#+END_SRC
+   
+** /initial ramdisk/ erstellen
+
+#+BEGIN_SRC sh
+mkinitcpio -p linux
+#+END_SRC
