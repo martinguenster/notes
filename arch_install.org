@@ -142,7 +142,12 @@ efibootmgr
 genfstab -Lp /mnt >> /mnt/etc/fstab
 #+END_SRC
 
-* System konfigurieren (chroot)
+* System konfigurieren (/chroot/)
+
+** /root/-Verzeichnis wechseln
+#+BEGIN_SRC sh
+arch-chroot /mnt
+#+END_SRC
 
 ** Hostename konfigurieren
 
