@@ -17,9 +17,9 @@ dev=sda
 ** Größe des SWAP-Speichers
 
 #+BEGIN_SRC sh :tangle yes
-swap_ratio=1.5
+swap_ratio=1.0
 #+END_SRC
-
+   
 
 * Erstellen und formatiren der Partitionen
 ** Löschen bestehender Partitionen
