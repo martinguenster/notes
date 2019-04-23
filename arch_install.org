@@ -31,16 +31,8 @@ sgdisk -o -g "/dev/$dev"
 ** Erstellen der Partitionen
 
 #+BEGIN_SRC sh :tangle yes
-swap_size=$(awk -v \
-            m="$swap_ratio"  \
-            '/MemTotal/ {print m * $2}' \
-            /proc/meminfo)
-
-echo "Swap: $swap_size"
-
 sgdisk -n=1:+0:+1G   -c=1:"boot" -t=1:ef00 \
-       -n=2:+1G:"+${swap_size}K" -c=2:"swap" -t=2:8200 \
-       -N=3          -c=3:"root" -t=3:8300 \
+       -N=2          -c=2:"root" -t=3:8300 \
        "/dev/$dev"
 #+END_SRC
 
@@ -50,22 +42,17 @@ sgdisk -n=1:+0:+1G   -c=1:"boot" -t=1:ef00 \
 mkfs.vfat -F 32 -n EFI "/dev/${dev}1"
 #+END_SRC
 
-** SWAP-Partition formatieren 
-
-#+BEGIN_SRC sh
-mkswap -L SWAP "/dev/${dev}2"
-#+END_SRC
 
 ** BTRFS-Partition formatieren 
 
 #+BEGIN_SRC sh
-mkfs.btrfs -f -L ROOT "/dev/${dev}3"
+mkfs.btrfs -f -L ROOT "/dev/${dev}2"
 #+END_SRC
 
 ** BTRFS-Subvolumes erstellen
 
 #+BEGIN_SRC sh
-mount "/dev/${dev}3" /mnt
+mount "/dev/${dev}2" /mnt
 
 cd /mnt
 
@@ -81,14 +68,14 @@ btrfs sub create @var
 
 cd
 
-umount "/dev/${dev}3"
+umount "/dev/${dev}2"
 #+END_SRC
 
 * Gundsystem installieren
 
 ** Partionen mounten
 #+BEGIN_SRC sh
-mount -o noatime,compress=lzo,space_cache,ssd,subvol=@ "/dev/${dev}3" /mnt
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@ "/dev/${dev}2" /mnt
 
 mkdir -p /mnt/boot/efi \
          /mnt/.snapshots \
@@ -103,15 +90,15 @@ mkdir -p /mnt/boot/efi \
 
 mount "/dev/${dev}1" /mnt/boot/efi
 
-mount -o noatime,compress=lzo,space_cache,ssd,subvol=@snapshots "/dev/${dev}3" /mnt/.snapshots
-mount -o noatime,compress=lzo,space_cache,ssd,subvol=@home      "/dev/${dev}3" /mnt/home
-mount -o noatime,compress=lzo,space_cache,ssd,subvol=@root      "/dev/${dev}3" /mnt/root
-mount -o noatime,compress=lzo,space_cache,ssd,subvol=@opt       "/dev/${dev}3" /mnt/opt
-mount -o noatime,compress=lzo,space_cache,ssd,subvol=@srv       "/dev/${dev}3" /mnt/srv
-mount -o noatime,compress=lzo,space_cache,ssd,subvol=@tmp       "/dev/${dev}3" /mnt/tmp
-mount -o noatime,compress=lzo,space_cache,ssd,subvol=@usr_local "/dev/${dev}3" /mnt/usr/local
-mount -o noatime,compress=lzo,space_cache,ssd,subvol=@var       "/dev/${dev}3" /mnt/var
-mount -o noatime,compress=lzo,space_cache,ssd,subvolid=5        "/dev/${dev}3" /mnt/btrfs
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@snapshots "/dev/${dev}2" /mnt/.snapshots
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@home      "/dev/${dev}2" /mnt/home
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@root      "/dev/${dev}2" /mnt/root
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@opt       "/dev/${dev}2" /mnt/opt
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@srv       "/dev/${dev}2" /mnt/srv
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@tmp       "/dev/${dev}2" /mnt/tmp
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@usr_local "/dev/${dev}2" /mnt/usr/local
+mount -o noatime,compress=lzo,space_cache,ssd,subvol=@var       "/dev/${dev}2" /mnt/var
+mount -o noatime,compress=lzo,space_cache,ssd,subvolid=5        "/dev/${dev}2" /mnt/btrfs
 
 df -Th
 #+END_SRC
