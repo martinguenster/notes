@@ -142,26 +142,21 @@ efibootmgr
 genfstab -Lp /mnt >> /mnt/etc/fstab
 #+END_SRC
 
-* System konfigurieren (/chroot/)
-
-** /root/-Verzeichnis wechseln
-#+BEGIN_SRC sh
-arch-chroot /mnt
-#+END_SRC
+* System konfigurieren
 
 ** Hostename konfigurieren
 
 #+BEGIN_SRC sh
-echo $hostname > /etc/hostname
+echo $hostname > /mnt/etc/hostname
 #+END_SRC
 
 ** /locale.conf/ konfigurieren
 
 #+BEGIN_SRC sh
-echo LANG=de_DE.UTF-8 > /etc/locale.conf
+echo LANG=de_DE.UTF-8 > /mnt/etc/locale.conf
 #+END_SRC
 
-** /locale.gen/ konfigurieren
+** TODO /locale.gen/ konfigurieren
 
 #+BEGIN_SRC sh
 nano /etc/locale.gen ...
@@ -180,6 +175,12 @@ echo FONT=lat9w-16 >> /etc/vconsole.conf
 #+BEGIN_SRC sh
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 #+END_SRC
+
+** /root/-Verzeichnis wechseln
+#+BEGIN_SRC sh
+arch-chroot /mnt
+#+END_SRC
+
    
 ** /initial ramdisk/ erstellen
 
